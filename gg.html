@@ -29,6 +29,7 @@
 		}
 
 		.nav-container a {
+			position: relative;
 			flex: 0 0 auto; /* 不伸缩、不收缩 */
 			padding: 0 22.3px; /* 左右内边距控制按钮宽度 */
 			height: 32px; /* 缩小按钮高度 */
@@ -45,11 +46,26 @@
 			align-items: center;
 			white-space: nowrap; /* 防止文字换行 */
 		}
+		.nav-container a::before {
+			content: '';
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			right: 2px;
+			bottom: 2px;
+			border: 1px solid rgba(255, 232, 163, 0.6); /* 浅金色装饰线 */
+			border-radius: 2px; /* 比按钮圆角小1px */
+			pointer-events: none; /* 防止干扰点击 */
+			z-index: 1;
+		}
 
 		.nav-container a:hover {
 			background: #B34A0B; /* 悬停颜色加深 */
 			transform: translateY(-1px); /* 添加悬停微动效 */
 			box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+		}
+		.nav-container a:hover::before {
+			border-color: rgba(255, 216, 132, 0.8); /* 悬停时装饰线变亮 */
 		}
 
         /* 主内容区布局 */
