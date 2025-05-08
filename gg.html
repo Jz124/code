@@ -18,30 +18,39 @@
             flex-direction: column;
         }
 
-        /* 导航栏样式 */
-        .nav-container {
-            height: 50px;
-            background: #C4550D;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            border-bottom: 2px solid #A3440A;
-        }
+		/* 修改后的导航栏样式 */
+		.nav-container {
+			height: 50px; /* 保持原有高度不变 */
+			background: #F4E290;
+			display: flex;
+			justify-content: center; /* 水平居中 */
+			align-items: center; /* 垂直居中 */
+			padding: 0 10px; /* 两侧留白 */
+		}
 
-        .nav-container a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFFFFF;
-            text-decoration: none;
-            font-size: 16px;
-            font-family: "Microsoft Yahei", sans-serif;
-            transition: all 0.3s;
-        }
+		.nav-container a {
+			flex: 0 0 auto; /* 不伸缩、不收缩 */
+			padding: 0 22.3px; /* 左右内边距控制按钮宽度 */
+			height: 32px; /* 缩小按钮高度 */
+			margin: 0 3px; /* 按钮间距 */
+			color: #FFFFFF;
+			text-decoration: none;
+			font-size: 16px; /* 保持文字大小不变 */
+			font-family: "Microsoft Yahei", sans-serif;
+			background: #C4550D;
+			border-radius: 3px;
+			transition: all 0.3s;
+			box-shadow: 0 2px 3px rgba(0,0,0,0.15);
+			display: flex;
+			align-items: center;
+			white-space: nowrap; /* 防止文字换行 */
+		}
 
-        .nav-container a:hover {
-            background: rgba(0,0,0,0.15);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
+		.nav-container a:hover {
+			background: #B34A0B; /* 悬停颜色加深 */
+			transform: translateY(-1px); /* 添加悬停微动效 */
+			box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+		}
 
         /* 主内容区布局 */
         .windows-container {
