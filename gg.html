@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>公告页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 505px;
+            height: 352px;
+            background-color: #F4E290;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 导航栏样式 */
+        .nav-container {
+            height: 50px;
+            background: #C4550D;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border-bottom: 2px solid #A3440A;
+        }
+
+        .nav-container a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: "Microsoft Yahei", sans-serif;
+            transition: all 0.3s;
+        }
+
+        .nav-container a:hover {
+            background: rgba(0,0,0,0.15);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* 主内容区布局 */
+        .windows-container {
+            display: flex;
+            margin: 3px auto 0;
+            width: 490px;
+            height: 210px;
+            gap: 2px;
+        }
+
+        /* 滚动窗口样式 */
+        .scroll-frame {
+            width: 300px;
+            height: 210px;
+            background: #FEFBC5;
+            border: 1px solid #A18F3B;
+            border-radius: 2px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            overflow-y: auto;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        /* 统一链接样式 */
+        .scroll-frame a,
+        .info-panel a,
+        .carousel-info a {
+            color: #B89C5C;
+            transition: color 0.3s;
+        }
+        .scroll-frame a {
+            text-decoration: underline;
+        }
+        .info-panel a,
+        .carousel-info a {
+            text-decoration: none;
+        }
+        .scroll-frame a:hover,
+        .info-panel a:hover,
+        .carousel-info a:hover {
+            color: #9C7D3C;
+            text-decoration: underline;
+        }
+
+        /* 新增颜色样式 */
+        .news-red {
+            color: #C42727 !important;
+        }
+        .download-gold {
+            color: #9A8035 !important;
+        }
+		.black-text {
+			color: #000 !important;
+		}
+
+        /* 自定义滚动条 */
+        .scroll-frame::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scroll-frame::-webkit-scrollbar-thumb {
+            background: #C4550D;
+            border-radius: 3px;
+        }
+
+        /* 轮播图模块 */
+        .carousel-frame {
+            width: 188px;
+            height: 210px;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-content {
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+        }
+
+        /* 分页控制器 */
+        .pagination {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            display: flex;
+            gap: 4px;
+            z-index: 2;
+        }
+
+        .page-btn {
+            width: 18px;
+            height: 18px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 2px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            border: none;
+        }
+
+        .page-btn.active {
+            background: #C4550D;
+        }
+
+        /* 信息面板样式 */
+        .info-panel, .carousel-info {
+            padding: 1px 0 0 0;
+            font-size: 11px;
+            color: #5E532E;
+            line-height: 1.5;
+            overflow: hidden;
+            position: absolute;
+        }
+        .info-panel { 
+            left: 4px;
+            width: 300px;
+        }
+        .carousel-info {
+            left: 302.5px;
+            width: 188px;
+        }
+
+        .info-container {
+            display: flex;
+            margin: 8px auto 0;
+            width: 490px;
+            gap: 2px;
+            background: #F4E290;
+            position: relative;
+        }
+
+        /* 服务器特殊信息 */
+        .server-info {
+            color: #961F1F !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-container" aria-label="主导航">
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">官网</a>
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">新手</a>
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">下载</a>
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">论坛</a>
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">商城</a>
+            <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">安全</a>
+        </nav>
+
+        <div class="windows-container">
+            <div class="scroll-frame">
+                <ul>
+                    <li>
+                        <a href="https://www.douyin1.com/" target="_blank" rel="noopener noreferrer">•免费在线杀毒</a>
+                        <a href="https://www.douyin2.com/" target="_blank" rel="noopener noreferrer">•360安全中心</a>
+                    </li>
+                    <li>
+                        <a href="https://www.douyin3.com/" target="_blank" rel="noopener noreferrer">•天龙客服满意度调查</a>
+                        <a href="https://www.douyin4.com/" target="_blank" rel="noopener noreferrer">•账号安全站</a>
+                    </li>
+                    <li></li>
+                    <li class="server-info">5月15日开放一组新服：</li>
+                    <li class="server-info">网通二区【双子座】</li>
+                    <li></li>
+                    <li>5月14日全服更新至0.85.0858</li>
+                    <li></li>
+                    <li>暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等服务将和无密保用户一致。</li>
+                </ul>
+            </div>
+            
+            <div class="carousel-frame">
+                <div class="carousel-content">
+                    <img src="http://cdnjson.com/images/2025/05/08/13c66626e6642a150.jpg" 
+                         class="carousel-img active" 
+                         alt="时装">
+                    <img src="http://cdnjson.com/images/2025/05/08/2b1f18425542b7a2f.jpg" 
+                         class="carousel-img" 
+                         alt="老虎">
+                    <img src="http://cdnjson.com/images/2025/05/08/33afc172e27fe48ef.jpg" 
+                         class="carousel-img" 
+                         alt="白云">
+                </div>
+                
+                <div class="pagination" role="navigation" aria-label="轮播控制">
+                    <button class="page-btn active" data-page="0">1</button>
+                    <button class="page-btn" data-page="1">2</button>
+                    <button class="page-btn" data-page="2">3</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-container">
+            <div class="info-panel">
+                <!-- 修改颜色部分 -->
+                <a href="https://www.douyin5.com/" class="news-red" target="_blank" rel="noopener noreferrer">纪念512活动公告</a><br>
+                <a href="https://www.douyin6.com/" class="news-red" target="_blank" rel="noopener noreferrer">《天龙》5月15日新开服务器公告</a><br>
+                <a href="https://www.douyin7.com/" class="black-text" target="_blank" rel="noopener noreferrer">官博:太好听了！天龙背景音乐翻唱合辑(05/18)</a><br>
+                <a href="https://www.douyin8.com/" class="black-text" target="_blank" rel="noopener noreferrer">玩的就是心跳！《天龙》七大保命绝招(05/18)</a>
+            </div>
+            <div class="carousel-info">
+                <!-- 修改颜色部分 -->
+                <a href="https://www.douyin9.com/" class="news-red" target="_blank" rel="noopener noreferrer">搜狐畅游产品评测专员热招！欢迎加盟</a><br>
+                <a href="https://www.douyin10.com/" class="download-gold" target="_blank" rel="noopener noreferrer">最新手动补丁下载</a>
+                <a href="https://www.douyin11.com/" class="download-gold" target="_blank" rel="noopener noreferrer">手机靓图免费下载</a><br>
+                更新版本:tlbb-0.85.0600-0.85.0858<br>
+                大小：11.8MB  更新日期：09-5-14
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.page-btn');
+        const images = document.querySelectorAll('.carousel-img');
+        let currentIndex = 0;
+        let autoPlayTimer = null;
+
+        function switchSlide(index) {
+            images[currentIndex].classList.remove('active');
+            buttons[currentIndex].classList.remove('active');
+            currentIndex = index;
+            images[currentIndex].classList.add('active');
+            buttons[currentIndex].classList.add('active');
+        }
+
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(() => {
+                const nextIndex = (currentIndex + 1) % images.length;
+                switchSlide(nextIndex);
+            }, 4500);
+        }
+
+        startAutoPlay();
+
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (index !== currentIndex) {
+                    switchSlide(index);
+                    clearInterval(autoPlayTimer);
+                    startAutoPlay();
+                }
+            });
+        });
+
+        const carousel = document.querySelector('.carousel-frame');
+        carousel.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+        carousel.addEventListener('mouseleave', startAutoPlay);
+
+        window.addEventListener('load', () => {
+            images.forEach(img => {
+                new Image().src = img.src;
+            });
+        });
+    </script>
+</body>
+</html>
