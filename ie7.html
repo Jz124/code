@@ -20,28 +20,30 @@
         font-family: "Microsoft YaHei", SimSun, Arial;
     }
 
-    /* 通用按钮样式 */
+    /* 新版按钮样式 */
     .btn {
         position: absolute;
         width:76px;
         height:26px;
         top:13px;
-        background:#eee;
-        border:1px solid #999;
+        background:#DE6E22;
+        border:1px solid #B3591B;
         text-align:center;
         line-height:26px;
         font-family: "Microsoft YaHei", SimSun, Arial;
+        *overflow:visible;
     }
     .btn a {
         display:block;
         width:76px;
         height:26px;
-        color:#333;
+        color:#fff !important;
         text-decoration:none;
+        *font-size:12px;
     }
     .btn a:hover {
-        background:#ddd;
-        color:#000;
+        background:#B3591B;
+        color:#fff !important;
     }
 
     /* 导航按钮定位 */
@@ -52,7 +54,7 @@
     #btn5 { left:337px; }
     #btn6 { left:420px; }
 
-    /* 滚动窗口 */
+    /* 滚动窗口调整 */
     #scroll-window {
         position:absolute;
         width:283px;
@@ -61,12 +63,22 @@
         top:51px;
         border:1px solid #666;
         overflow:auto;
+        font-size:14px;
     }
-
-    /* 调整指定链接样式 */
-    #scroll-window a[style] {
-        font-size:12px !important;
-        line-height:14px !important;
+    #scroll-window p {
+        margin:2px 0;
+        line-height:16px;
+        *zoom:1;
+    }
+    /* 四个特定链接样式 */
+    #scroll-window a[href*="baidu"],
+    #scroll-window a[href*="tencent"],
+    #scroll-window a[href*="alibabagroup"],
+    #scroll-window a[href*="sohu"] {
+        font-size:11px !important;
+        line-height:12px !important;
+        vertical-align:middle;
+        *display:inline !important;
     }
 
     /* 轮播窗口 */
@@ -80,8 +92,6 @@
         overflow:hidden;
         z-index:1;
     }
-
-    /* 轮播图片 */
     .carousel-img {
         position:absolute;
         width:203px;
@@ -201,7 +211,7 @@
 
     <!-- 滚动窗口 -->
     <div id="scroll-window">
-        <div style="padding:8px; font-size:12px">
+        <div style="padding:8px">
             <p>
                 <a href="https://www.baidu.com/" style="color:#06c">免费在线杀毒</a>　　
                 <a href="https://www.tencent.com/" style="color:#06c">360安全中心</a>
