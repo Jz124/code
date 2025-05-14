@@ -18,9 +18,10 @@
         height:351px;
         border:1px solid #ccc;
         font-family: "Microsoft YaHei", SimSun, Arial;
+        background:#F7E08D;
     }
 
-    /* 新版按钮样式 */
+    /* 导航按钮样式 */
     .btn {
         position: absolute;
         width:76px;
@@ -31,7 +32,6 @@
         text-align:center;
         line-height:26px;
         font-family: "Microsoft YaHei", SimSun, Arial;
-        *overflow:visible;
     }
     .btn a {
         display:block;
@@ -39,11 +39,9 @@
         height:26px;
         color:#fff !important;
         text-decoration:none;
-        *font-size:12px;
     }
     .btn a:hover {
         background:#B3591B;
-        color:#fff !important;
     }
 
     /* 导航按钮定位 */
@@ -54,31 +52,32 @@
     #btn5 { left:337px; }
     #btn6 { left:420px; }
 
-    /* 滚动窗口调整 */
+    /* 滚动窗口样式 */
     #scroll-window {
         position:absolute;
         width:283px;
         height:224px;
         left:6px;
         top:51px;
-        border:1px solid #666;
+        border:2px solid #8F7929;
         overflow:auto;
+        background:#FEFBC5;
         font-size:14px;
     }
-    #scroll-window p {
-        margin:2px 0;
-        line-height:16px;
+    .link-pair {
+        margin:4px 0;
+        overflow:hidden;
         *zoom:1;
     }
-    /* 四个特定链接样式 */
-    #scroll-window a[href*="baidu"],
-    #scroll-window a[href*="tencent"],
-    #scroll-window a[href*="alibabagroup"],
-    #scroll-window a[href*="sohu"] {
-        font-size:11px !important;
-        line-height:12px !important;
-        vertical-align:middle;
-        *display:inline !important;
+    .link-item {
+        float:left;
+        width:48%;
+        color:#06c;
+        text-decoration:underline !important;
+        white-space:nowrap;
+    }
+    .link-item + .link-item {
+        margin-left:4%;
     }
 
     /* 轮播窗口 */
@@ -103,24 +102,34 @@
         z-index:1;
     }
 
-    /* 轮播控制按钮 */
+    /* 轮播按钮样式 */
     .ctrl-btn {
         position:absolute;
         width:19px;
         height:14px;
         bottom:1px;
-        background:#ff9900;
-        color:#fff;
-        border:1px solid #ff6600;
+        background:rgba(255,153,0,0.3);
+        border:1px solid rgba(255,102,0,0.3);
+        color:rgba(255,255,255,0.8);
         font:bold 12px/14px Arial;
         text-align:center;
         cursor:pointer;
         z-index:999;
+        transition:all 0.3s;
     }
-    * html .ctrl-btn { zoom:1; }
     #ctrl1 { left:141px; }
     #ctrl2 { left:161px; }
     #ctrl3 { left:181px; }
+    .ctrl-btn:hover {
+        background:#FF9900;
+        border-color:#FF6600;
+        color:#fff;
+        opacity:1 !important;
+    }
+    * html .ctrl-btn { 
+        zoom:1;
+        filter:alpha(opacity=30);
+    }
 
     /* 左侧信息窗 */
     #left-info {
@@ -130,7 +139,6 @@
         left:6px;
         top:278px;
         overflow:hidden;
-        zoom:1;
     }
     #left-info a {
         display:block;
@@ -144,57 +152,44 @@
         color:#f60 !important;
         text-decoration:underline !important;
     }
-    #left-info span {
-        color:#777;
-        font-size:9px;
-        margin-left:3px;
-    }
 
-    /* 右侧信息窗 */
+    /* 右侧信息窗最终修正 */
     #right-info {
         position:absolute;
         width:203px;
-        height:65px;
+        height:75px;
         left:291px;
         top:281px;
-        overflow:hidden;
-        zoom:1;
+        overflow:visible;
         font-size:0;
+        text-align:left !important;
+        *padding-left:0;
     }
-    .right-link {
+    .right-link, .inline-link {
         color:#000 !important;
         text-decoration:none !important;
         font-size:10px !important;
     }
-    .right-link:hover {
+    .right-link:hover, .inline-link:hover {
         color:#f60 !important;
         text-decoration:underline !important;
     }
-    .row {
-        *white-space: nowrap;
-    }
     .inline-link {
-        display:-moz-inline-stack;
         display:inline-block;
-        *display:inline;
-        zoom:1;
-        width:48%;
-        font-size:10px;
+        width:49% !important;
         vertical-align:top;
-        *margin-right:-4px;
+        text-align:left !important;
+        *margin-right:1%;
     }
-
-    /* 版本信息 */
     .version-info {
-        font-size:10px;
-        *zoom:1;
+        font-size:10px !important;
+        color:#444 !important;
+        *margin-left:-3px;
     }
     .version-info span {
-        display:block;
-        line-height:10px;
-        padding:2px 3px;
-        *white-space:nowrap;
-        color:#444;
+        display:block !important;
+        line-height:12px;
+        padding:2px 0;
     }
     </style>
 </head>
@@ -212,17 +207,25 @@
     <!-- 滚动窗口 -->
     <div id="scroll-window">
         <div style="padding:8px">
-            <p>
-                <a href="https://www.baidu.com/" style="color:#06c">免费在线杀毒</a>　　
-                <a href="https://www.tencent.com/" style="color:#06c">360安全中心</a>
+            <div class="link-pair">
+                <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
+                <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
+            </div>
+            <div class="link-pair">
+                <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
+                <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
+            </div>
+
+            <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
+            <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
+            
+            <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
+            
+            <p style="color:#666;margin:8px 0 0 0">
+                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
+                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
+                服务将和无密保用户一致。
             </p>
-            <p>
-                <a href="https://www.alibabagroup.com/" style="color:#06c">天龙客服满意度调查</a>　　
-                <a href="https://www.sohu.com/" style="color:#06c">账号安全站</a>
-            </p>
-            <p style="color:#c00">5月15日开放一组新服：<br>网通二区【双子座】</p>
-            <p>5月14日全服更新至0.85.0858</p>
-            <p style="color:#666">暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等服务将和无密保用户一致。</p>
         </div>
     </div>
 
@@ -244,11 +247,12 @@
         <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
     </div>
     
+    <!-- 右侧信息窗 -->
     <div id="right-info">
         <a href="https://tl.changyou.com/index.shtml" class="right-link">搜狐畅游产品评测专员热招！欢迎加盟</a>
         <div class="row">
-            <a href="https://tlhj.changyou.com/" class="inline-link right-link">最新手动补丁下载</a
-            ><a href="https://tlbbgl.changyou.com/" class="inline-link right-link">手机靓图免费下载</a>
+            <a href="https://tlhj.changyou.com/" class="inline-link">最新手动补丁下载</a>
+            <a href="https://tlbbgl.changyou.com/" class="inline-link">手机靓图免费下载</a>
         </div>
         <div class="version-info">
             <span>更新版本:tlbb-0.85.0600-0.85.0858</span>
@@ -263,11 +267,11 @@ var currentIndex = 0;
 var carouselTimer = null;
 
 function switchSlide(index) {
-    var imgs = document.getElementById('carousel').getElementsByTagName('img');
+    var imgs = document.getElementsByClassName('carousel-img');
     for(var i=0; i<imgs.length; i++){
-        imgs[i].className = 'carousel-img';
+        imgs[i].style.display = 'none';
     }
-    imgs[index].className = 'carousel-img active';
+    imgs[index].style.display = 'block';
     currentIndex = index;
 }
 
@@ -281,20 +285,19 @@ function startCarousel() {
 window.onload = function(){
     var carousel = document.getElementById('carousel');
     
-    // 绑定控制按钮
-    var btns = carousel.getElementsByTagName('div');
+    // 悬停切换事件
+    var btns = document.getElementsByClassName('ctrl-btn');
     for(var i=0; i<btns.length; i++){
-        if(btns[i].className.indexOf('ctrl-btn') > -1){
-            btns[i].onclick = function(){
-                switchSlide(parseInt(this.innerHTML)-1);
-            }
+        btns[i].onmouseover = function(){
+            clearInterval(carouselTimer);
+            switchSlide(parseInt(this.innerHTML)-1);
+        }
+        btns[i].onmouseout = function(){
+            startCarousel();
         }
     }
     
-    // 鼠标交互
-    carousel.onmouseover = function(){ clearInterval(carouselTimer); }
-    carousel.onmouseout = startCarousel;
-    
+    // 启动轮播
     startCarousel();
 }
 </script>
