@@ -166,11 +166,12 @@
         *padding-left:0;
     }
     .right-link, .inline-link {
-        color:#000 !important;
-        text-decoration:none !important;
-        font-size:10px !important;
-        line-height:12px !important; /* 行距统一 */
-    }
+    color:#444 !important;
+    text-decoration:none !important;
+    font-size:10px !important;
+    line-height:12px !important;
+    font-family: "Microsoft YaHei", SimSun, Arial;
+}
     .right-link:first-child {
         color:#9E511C !important;
     }
@@ -191,9 +192,12 @@
     
     /* 版本信息行距 */
     #right-info > div > div {
-        line-height:12px !important;
-        padding:2px 0 !important;
-    }
+    font-size:10px !important;
+    color:#444 !important;
+    line-height:12px !important;
+    padding:2px 0 !important;
+    font-family: "Microsoft YaHei", SimSun, Arial;
+}
     </style>
 </head>
 
@@ -253,7 +257,7 @@
     <!-- 右侧信息窗 -->
     <div id="right-info">
         <a href="https://tl.changyou.com/index.shtml" class="right-link">搜狐畅游产品评测专员热招！欢迎加盟</a>
-        <div class="row">
+        <div class="row" style="font-size:0; white-space:nowrap;">
             <a href="https://tlhj.changyou.com/" class="inline-link">最新手动补丁下载</a>
             <a href="https://tlbbgl.changyou.com/" class="inline-link">手机靓图免费下载</a>
         </div>
