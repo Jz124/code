@@ -1,212 +1,222 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ÌìÁúÓÎÏ·IE7¼æÈİ°æ</title>
-<style type="text/css">
-/* »ù´¡ÖØÖÃ */
-body,div,img {
-    margin:0;
-    padding:0;
-    border:0;
-}
+    <meta charset="GB2312">
+    <title>å¤©é¾™æ¸¸æˆIE7å…¼å®¹ç‰ˆ</title>
+    <style type="text/css">
+    /* åŸºç¡€é‡ç½® */
+    body,div,img {
+        margin:0;
+        padding:0;
+        border:0;
+    }
 
-/* Ö÷ÈİÆ÷ */
-#container {
-    position: relative;
-    width:502px;
-    height:351px;
-    border:1px solid #ccc;
-    font-family: "Microsoft YaHei", SimSun, Arial;
-}
+    /* ä¸»å®¹å™¨ */
+    #container {
+        position: relative;
+        width:502px;
+        height:351px;
+        border:1px solid #ccc;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
 
-/* Í¨ÓÃ°´Å¥ÑùÊ½ */
-.btn {
-    position: absolute;
-    width:76px;
-    height:26px;
-    top:13px;
-    background:#eee;
-    border:1px solid #999;
-    text-align:center;
-    line-height:26px;
-    font-family: "Microsoft YaHei", SimSun, Arial;
-}
-.btn a {
-    display:block;
-    width:76px;
-    height:26px;
-    color:#333;
-    text-decoration:none;
-}
-.btn a:hover {
-    background:#ddd;
-    color:#000;
-}
+    /* é€šç”¨æŒ‰é’®æ ·å¼ */
+    .btn {
+        position: absolute;
+        width:76px;
+        height:26px;
+        top:13px;
+        background:#eee;
+        border:1px solid #999;
+        text-align:center;
+        line-height:26px;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    .btn a {
+        display:block;
+        width:76px;
+        height:26px;
+        color:#333;
+        text-decoration:none;
+    }
+    .btn a:hover {
+        background:#ddd;
+        color:#000;
+    }
 
-/* µ¼º½°´Å¥¶¨Î» */
-#btn1 { left:5px; }
-#btn2 { left:88px; }
-#btn3 { left:171px; }
-#btn4 { left:254px; }
-#btn5 { left:337px; }
-#btn6 { left:420px; }
+    /* å¯¼èˆªæŒ‰é’®å®šä½ */
+    #btn1 { left:5px; }
+    #btn2 { left:88px; }
+    #btn3 { left:171px; }
+    #btn4 { left:254px; }
+    #btn5 { left:337px; }
+    #btn6 { left:420px; }
 
-/* ¹ö¶¯´°¿Ú */
-#scroll-window {
-    position:absolute;
-    width:283px;
-    height:224px;
-    left:6px;
-    top:51px;
-    border:1px solid #666;
-    overflow:auto;
-}
+    /* æ»šåŠ¨çª—å£ */
+    #scroll-window {
+        position:absolute;
+        width:283px;
+        height:224px;
+        left:6px;
+        top:51px;
+        border:1px solid #666;
+        overflow:auto;
+    }
 
-/* ÂÖ²¥´°¿Ú */
-#carousel {
-    position:absolute;
-    width:203px;
-    height:227px;
-    left:291px;
-    top:51px;
-    border:1px solid #666;
-    overflow:hidden;
-    z-index:1;
-}
+    /* è°ƒæ•´æŒ‡å®šé“¾æ¥æ ·å¼ */
+    #scroll-window a[style] {
+        font-size:12px !important;
+        line-height:14px !important;
+    }
 
-/* ÂÖ²¥Í¼Æ¬ */
-.carousel-img {
-    position:absolute;
-    width:203px;
-    height:227px;
-    display:none;
-}
-.carousel-img.active {
-    display:block;
-    z-index:1;
-}
+    /* è½®æ’­çª—å£ */
+    #carousel {
+        position:absolute;
+        width:203px;
+        height:227px;
+        left:291px;
+        top:51px;
+        border:1px solid #666;
+        overflow:hidden;
+        z-index:1;
+    }
 
-/* ÂÖ²¥¿ØÖÆ°´Å¥ */
-.ctrl-btn {
-    position:absolute;
-    width:19px;
-    height:14px;
-    bottom:1px;
-    background:#ff9900;
-    color:#fff;
-    border:1px solid #ff6600;
-    font:bold 12px/14px Arial;
-    text-align:center;
-    cursor:pointer;
-    z-index:999;
-}
-* html .ctrl-btn { zoom:1; }
-#ctrl1 { left:141px; }
-#ctrl2 { left:161px; }
-#ctrl3 { left:181px; }
+    /* è½®æ’­å›¾ç‰‡ */
+    .carousel-img {
+        position:absolute;
+        width:203px;
+        height:227px;
+        display:none;
+    }
+    .carousel-img.active {
+        display:block;
+        z-index:1;
+    }
 
-/* ×ó²àĞÅÏ¢´° */
-#left-info {
-    position:absolute;
-    width:283px;
-    height:55px;
-    left:6px;
-    top:278px;
-    overflow:hidden;
-    zoom:1;
-}
-#left-info a {
-    display:block;
-    color:#444;
-    text-decoration:none;
-    font-size:10px;
-    line-height:10px;
-    padding:2px 3px;
-}
-/* ĞŞ¸´×ó²àĞüÍ£Ğ§¹û */
-#left-info a:hover {
-    color:#f60 !important;
-    text-decoration:underline !important;
-}
+    /* è½®æ’­æ§åˆ¶æŒ‰é’® */
+    .ctrl-btn {
+        position:absolute;
+        width:19px;
+        height:14px;
+        bottom:1px;
+        background:#ff9900;
+        color:#fff;
+        border:1px solid #ff6600;
+        font:bold 12px/14px Arial;
+        text-align:center;
+        cursor:pointer;
+        z-index:999;
+    }
+    * html .ctrl-btn { zoom:1; }
+    #ctrl1 { left:141px; }
+    #ctrl2 { left:161px; }
+    #ctrl3 { left:181px; }
 
-/* ÓÒ²àĞÅÏ¢´° */
-#right-info {
-    position:absolute;
-    width:203px;
-    height:65px;  /* µ÷Õû¸ß¶È */
-    left:291px;
-    top:284px;
-    overflow:hidden;
-    zoom:1;
-    font-size:0;
-}
-/* ÓÒ²àÁ´½ÓÑùÊ½ */
-.right-link {
-    color:#000 !important;
-    text-decoration:none !important;
-    font-size:10px !important;
-}
-.right-link:hover {
-    color:#f60 !important;
-    text-decoration:underline !important;
-}
-.row {
-    *white-space: nowrap;
-}
-.inline-link {
-    display:-moz-inline-stack;
-    display:inline-block;
-    *display:inline;
-    zoom:1;
-    width:48%;
-    font-size:10px;
-    vertical-align:top;
-    *margin-right:-4px;
-}
+    /* å·¦ä¾§ä¿¡æ¯çª— */
+    #left-info {
+        position:absolute;
+        width:283px;
+        height:55px;
+        left:6px;
+        top:278px;
+        overflow:hidden;
+        zoom:1;
+    }
+    #left-info a {
+        display:block;
+        color:#444;
+        text-decoration:none;
+        font-size:10px;
+        line-height:10px;
+        padding:2px 3px;
+    }
+    #left-info a:hover {
+        color:#f60 !important;
+        text-decoration:underline !important;
+    }
+    #left-info span {
+        color:#777;
+        font-size:9px;
+        margin-left:3px;
+    }
 
-/* °æ±¾ĞÅÏ¢ */
-.version-info {
-    font-size:10px;
-    *zoom:1;
-}
-.version-info span {
-    display:block;
-    line-height:10px;
-    padding:2px 3px;
-    *white-space:nowrap;
-    color:#444;
-}
-</style>
+    /* å³ä¾§ä¿¡æ¯çª— */
+    #right-info {
+        position:absolute;
+        width:203px;
+        height:65px;
+        left:291px;
+        top:281px;
+        overflow:hidden;
+        zoom:1;
+        font-size:0;
+    }
+    .right-link {
+        color:#000 !important;
+        text-decoration:none !important;
+        font-size:10px !important;
+    }
+    .right-link:hover {
+        color:#f60 !important;
+        text-decoration:underline !important;
+    }
+    .row {
+        *white-space: nowrap;
+    }
+    .inline-link {
+        display:-moz-inline-stack;
+        display:inline-block;
+        *display:inline;
+        zoom:1;
+        width:48%;
+        font-size:10px;
+        vertical-align:top;
+        *margin-right:-4px;
+    }
+
+    /* ç‰ˆæœ¬ä¿¡æ¯ */
+    .version-info {
+        font-size:10px;
+        *zoom:1;
+    }
+    .version-info span {
+        display:block;
+        line-height:10px;
+        padding:2px 3px;
+        *white-space:nowrap;
+        color:#444;
+    }
+    </style>
 </head>
 
 <body>
 <div id="container">
-    <!-- µ¼º½°´Å¥ -->
-    <div class="btn" id="btn1"><a href="https://www.17173.com/">¹ÙÍø</a></div>
-    <div class="btn" id="btn2"><a href="https://www.gamersky.com/">ĞÂÊÖ</a></div>
-    <div class="btn" id="btn3"><a href="https://www.duowan.com/">ÏÂÔØ</a></div>
-    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">ÂÛÌ³</a></div>
-    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">ÉÌ³Ç</a></div>
-    <div class="btn" id="btn6"><a href="https://game.163.com/">°²È«</a></div>
+    <!-- å¯¼èˆªæŒ‰é’® -->
+    <div class="btn" id="btn1"><a href="https://www.17173.com/">å®˜ç½‘</a></div>
+    <div class="btn" id="btn2"><a href="https://www.gamersky.com/">æ–°æ‰‹</a></div>
+    <div class="btn" id="btn3"><a href="https://www.duowan.com/">ä¸‹è½½</a></div>
+    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">è®ºå›</a></div>
+    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">å•†åŸ</a></div>
+    <div class="btn" id="btn6"><a href="https://game.163.com/">å®‰å…¨</a></div>
 
-    <!-- ¹ö¶¯´°¿Ú -->
+    <!-- æ»šåŠ¨çª—å£ -->
     <div id="scroll-window">
         <div style="padding:8px; font-size:12px">
             <p>
-                <a href="https://www.baidu.com/" style="color:#06c; font-size:14px">Ãâ·ÑÔÚÏßÉ±¶¾</a>¡¡¡¡
-                <a href="https://www.tencent.com/" style="color:#06c; font-size:14px">360°²È«ÖĞĞÄ</a>
+                <a href="https://www.baidu.com/" style="color:#06c">å…è´¹åœ¨çº¿æ€æ¯’</a>ã€€ã€€
+                <a href="https://www.tencent.com/" style="color:#06c">360å®‰å…¨ä¸­å¿ƒ</a>
             </p>
             <p>
-                <a href="https://www.alibabagroup.com/" style="color:#06c; font-size:14px">ÌìÁú¿Í·şÂúÒâ¶Èµ÷²é</a>¡¡¡¡
-                <a href="https://www.sohu.com/" style="color:#06c; font-size:14px">ÕËºÅ°²È«Õ¾</a>
+                <a href="https://www.alibabagroup.com/" style="color:#06c">å¤©é¾™å®¢æœæ»¡æ„åº¦è°ƒæŸ¥</a>ã€€ã€€
+                <a href="https://www.sohu.com/" style="color:#06c">è´¦å·å®‰å…¨ç«™</a>
             </p>
-            <p style="color:#c00">5ÔÂ15ÈÕ¿ª·ÅÒ»×éĞÂ·ş£º<br>ÍøÍ¨¶şÇø¡¾Ë«×Ó×ù¡¿</p>
-            <p>5ÔÂ14ÈÕÈ«·ş¸üĞÂÖÁ0.85.0858</p>
-            <p style="color:#666">ÔİÍ£µç»°ÃÜ±£¹¦ÄÜÊ×°ó¡¢Ôö°óÁ½Ïî·şÎñ£¬½â³ıµç»°ÃÜ±£°ó¶¨¹¦ÄÜ¿ÉÒÔ¼ÌĞøÊ¹ÓÃ¡£ÒÑ°ó¶¨µç»°ÃÜ±£µÄÕËºÅ£¬ÈÔ¿É¼ÌĞøÊ¹ÓÃ¸ÃÏî·şÎñ£¬µ«ÊÇÏà¹ØµÄÕÊºÅ°²È«ºóĞø´¦ÀíµÈ·şÎñ½«ºÍÎŞÃÜ±£ÓÃ»§Ò»ÖÂ¡£</p>
+            <p style="color:#c00">5æœˆ15æ—¥å¼€æ”¾ä¸€ç»„æ–°æœï¼š<br>ç½‘é€šäºŒåŒºã€åŒå­åº§ã€‘</p>
+            <p>5æœˆ14æ—¥å…¨æœæ›´æ–°è‡³0.85.0858</p>
+            <p style="color:#666">æš‚åœç”µè¯å¯†ä¿åŠŸèƒ½é¦–ç»‘ã€å¢ç»‘ä¸¤é¡¹æœåŠ¡ï¼Œè§£é™¤ç”µè¯å¯†ä¿ç»‘å®šåŠŸèƒ½å¯ä»¥ç»§ç»­ä½¿ç”¨ã€‚å·²ç»‘å®šç”µè¯å¯†ä¿çš„è´¦å·ï¼Œä»å¯ç»§ç»­ä½¿ç”¨è¯¥é¡¹æœåŠ¡ï¼Œä½†æ˜¯ç›¸å…³çš„å¸å·å®‰å…¨åç»­å¤„ç†ç­‰æœåŠ¡å°†å’Œæ— å¯†ä¿ç”¨æˆ·ä¸€è‡´ã€‚</p>
         </div>
     </div>
 
-    <!-- ÂÖ²¥´°¿Ú -->
+    <!-- è½®æ’­çª—å£ -->
     <div id="carousel">
         <img src="1.png" class="carousel-img active">
         <img src="2.png" class="carousel-img">
@@ -216,29 +226,29 @@ body,div,img {
         <div class="ctrl-btn" id="ctrl3">3</div>
     </div>
 
-    <!-- ĞÅÏ¢´°¿Ú -->
+    <!-- ä¿¡æ¯çª—å£ -->
     <div id="left-info">
-        <a href="https://www.17173.com/">¼ÍÄî512»î¶¯¹«¸æ</a>
-        <a href="https://www.gamersky.com/">¡¶ÌìÁú¡·5ÔÂ15ÈÕĞÂ¿ª·şÎñÆ÷¹«¸æ</a>
-        <a href="https://www.duowan.com/">¹Ù²©:Ì«ºÃÌıÁË£¡ÌìÁú±³¾°ÒôÀÖ·­³ªºÏ¼­<span>(05/18)</span></a>
-        <a href="https://news.qq.com/ch/games">ÍæµÄ¾ÍÊÇĞÄÌø£¡¡¶ÌìÁú¡·Æß´ó±£Ãü¾øÕĞ<span>(05/18)</span></a>
+        <a href="https://www.17173.com/">çºªå¿µ512æ´»åŠ¨å…¬å‘Š</a>
+        <a href="https://www.gamersky.com/">ã€Šå¤©é¾™ã€‹5æœˆ15æ—¥æ–°å¼€æœåŠ¡å™¨å…¬å‘Š</a>
+        <a href="https://www.duowan.com/">å®˜åš:å¤ªå¥½å¬äº†ï¼å¤©é¾™èƒŒæ™¯éŸ³ä¹ç¿»å”±åˆè¾‘<span>(05/18)</span></a>
+        <a href="https://news.qq.com/ch/games">ç©çš„å°±æ˜¯å¿ƒè·³ï¼ã€Šå¤©é¾™ã€‹ä¸ƒå¤§ä¿å‘½ç»æ‹›<span>(05/18)</span></a>
     </div>
     
     <div id="right-info">
-        <a href="https://tl.changyou.com/index.shtml" class="right-link">ËÑºü³©ÓÎ²úÆ·ÆÀ²â×¨Ô±ÈÈÕĞ£¡»¶Ó­¼ÓÃË</a>
+        <a href="https://tl.changyou.com/index.shtml" class="right-link">æœç‹ç•…æ¸¸äº§å“è¯„æµ‹ä¸“å‘˜çƒ­æ‹›ï¼æ¬¢è¿åŠ ç›Ÿ</a>
         <div class="row">
-            <a href="https://tlhj.changyou.com/" class="inline-link right-link">×îĞÂÊÖ¶¯²¹¶¡ÏÂÔØ</a
-            ><a href="https://tlbbgl.changyou.com/" class="inline-link right-link">ÊÖ»úö¦Í¼Ãâ·ÑÏÂÔØ</a>
+            <a href="https://tlhj.changyou.com/" class="inline-link right-link">æœ€æ–°æ‰‹åŠ¨è¡¥ä¸ä¸‹è½½</a
+            ><a href="https://tlbbgl.changyou.com/" class="inline-link right-link">æ‰‹æœºé“å›¾å…è´¹ä¸‹è½½</a>
         </div>
         <div class="version-info">
-            <span>¸üĞÂ°æ±¾:tlbb-0.85.0600-0.85.0858</span>
-            <span>´óĞ¡£º11.8MB  ¸üĞÂÈÕÆÚ£º09-5-14</span>
+            <span>æ›´æ–°ç‰ˆæœ¬:tlbb-0.85.0600-0.85.0858</span>
+            <span>å¤§å°ï¼š11.8MB  æ›´æ–°æ—¥æœŸï¼š09-5-14</span>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-// ÂÖ²¥¿ØÖÆ½Å±¾
+// è½®æ’­æ§åˆ¶è„šæœ¬
 var currentIndex = 0;
 var carouselTimer = null;
 
@@ -261,7 +271,7 @@ function startCarousel() {
 window.onload = function(){
     var carousel = document.getElementById('carousel');
     
-    // °ó¶¨¿ØÖÆ°´Å¥
+    // ç»‘å®šæ§åˆ¶æŒ‰é’®
     var btns = carousel.getElementsByTagName('div');
     for(var i=0; i<btns.length; i++){
         if(btns[i].className.indexOf('ctrl-btn') > -1){
@@ -271,7 +281,7 @@ window.onload = function(){
         }
     }
     
-    // Êó±ê½»»¥
+    // é¼ æ ‡äº¤äº’
     carousel.onmouseover = function(){ clearInterval(carouselTimer); }
     carousel.onmouseout = startCarousel;
     
