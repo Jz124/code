@@ -5,7 +5,7 @@
     <title>天龙游戏IE7兼容版</title>
     <style type="text/css">
     /* 基础重置 */
-    body,div,img,table {
+    body,div,img {
         margin:0;
         padding:0;
         border:0;
@@ -102,7 +102,7 @@
         z-index:1;
     }
 
-    /* 轮播按钮样式 */
+    /* 轮播按钮样式 (新增激活状态) */
     .ctrl-btn {
         position:absolute;
         width:19px;
@@ -116,6 +116,11 @@
         cursor:pointer;
         z-index:999;
         filter:alpha(opacity=30);
+    }
+    .ctrl-btn.active {
+        background:#FF6600 !important;
+        filter:alpha(opacity=100) !important;
+        border-color:#B3591B !important;
     }
     #ctrl1 { left:141px; }
     #ctrl2 { left:161px; }
@@ -160,28 +165,29 @@
         text-decoration:underline !important;
     }
 
-    /* 右侧表格布局终极优化 */
-    #right-info .link-table {
+    /* 右侧终极紧凑布局方案 */
+    #right-info .link-container {
         width:203px;
-        border-collapse:collapse;
-        *margin:-1px 0 1px -3px; /* IE7四边距优化 */
-        margin:2px 0;
+        *margin-left:-4px; /* IE7左移修正 */
+        overflow:hidden;
     }
-    #right-info .link-cell {
-        width:50%;
-        padding:0;
-        *padding:0 1px; /* IE7单元格压缩 */
+    #right-info .link-float {
+        float:left;
+        width:101px;
+        *width:99px; /* IE7盒模型补偿 */
+        _width:100px; /* IE6备用方案 */
     }
-    #right-info .link-cell a {
+    #right-info .link-float a {
         display:block;
-        width:101px; 
-        *width:99px;  /* IE7宽度补偿 */
+        width:98px;
+        *width:96px; /* IE7二次修正 */
         color:#06c !important;
         text-decoration:underline !important;
         white-space:nowrap;
-        letter-spacing:-1px; /* 字符间距压缩 */
-        _margin-right:-1px; /* IE6最终微调 */
-        padding:2px 1px !important; /* 横向间距压缩 */
+        padding:2px 0;
+        letter-spacing:-0.5px; /* 压缩字符间距 */
+        *margin-right:-2px; /* IE7右间距消除 */
+        _margin-right:-3px; /* IE6最终调整 */
     }
     </style>
 </head>
@@ -214,8 +220,8 @@
             <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
             
             <p style="color:#666;margin:8px 0 0 0">
-                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。
-                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等
+                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
+                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
                 服务将和无密保用户一致。
             </p>
         </div>
@@ -242,12 +248,14 @@
     <!-- 右侧信息窗（终极紧凑布局） -->
     <div id="right-info">
         <a href="https://www.baidu.com/" class="highlight">搜狐畅游产品评测专员热招！欢迎加盟</a>
-        <table class="link-table">
-            <tr>
-                <td class="link-cell"><a href="https://www.tencent.com/">最新手动补丁下载</a></td>
-                <td class="link-cell"><a href="https://www.sina.com.cn/">手机靓图免费下载</a></td>
-            </tr>
-        </table>
+        <div class="link-container">
+            <div class="link-float">
+                <a href="https://www.tencent.com/">最新手动补丁下载</a>
+            </div>
+            <div class="link-float">
+                <a href="https://www.sina.com.cn/">手机靓图免费下载</a>
+            </div>
+        </div>
         <a href="javascript:void(0)">更新版本:tlbb-0.85.0600-0.85.0858</a>
         <a href="javascript:void(0)">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</a>
     </div>
@@ -284,11 +292,17 @@ var currentIndex = 0;
 var carouselTimer = null;
 
 function switchSlide(index) {
-    var imgs = getElementsByClassName(document, 'carousel-img');
+    var imgs = document.getElementsByClassName('carousel-img');
+    var btns = document.getElementsByClassName('ctrl-btn');
+    
+    // 更新轮播图状态
     for(var i=0; i<imgs.length; i++){
         imgs[i].style.display = 'none';
+        btns[i].className = btns[i].className.replace(/\s?active/g, '');
     }
     imgs[index].style.display = 'block';
+    btns[index].className += ' active';
+    
     currentIndex = index;
 }
 
@@ -300,16 +314,17 @@ function startCarousel() {
 }
 
 window.onload = function(){
-    var btns = getElementsByClassName(document, 'ctrl-btn');
+    var btns = document.getElementsByClassName('ctrl-btn');
     
+    // 初始化第一个按钮状态
+    switchSlide(0);
+    
+    // 绑定按钮事件
     for(var i=0; i<btns.length; i++){
         btns[i].setAttribute('index', i);
-    }
-    
-    for(var i=0; i<btns.length; i++){
         btns[i].onmouseover = function(){
             clearInterval(carouselTimer);
-            var index = this.getAttribute('index');
+            var index = parseInt(this.getAttribute('index'));
             switchSlide(index);
         }
         btns[i].onmouseout = function(){
@@ -317,6 +332,7 @@ window.onload = function(){
         }
     }
     
+    // 启动自动轮播
     startCarousel();
 }
 </script>
