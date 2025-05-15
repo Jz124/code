@@ -5,7 +5,7 @@
     <title>天龙游戏IE7兼容版</title>
     <style type="text/css">
     /* 基础重置 */
-    body,div,img {
+    body,div,img,table {
         margin:0;
         padding:0;
         border:0;
@@ -127,77 +127,62 @@
         zoom:1;
     }
 
-    /* 统一信息窗行距 */
-    #left-info {
+    /* 统一信息窗样式 */
+    #left-info, #right-info {
         position:absolute;
-        width:283px;
         height:auto !important;
-        left:6px;
-        top:278px;
         overflow:visible !important;
+        font-size:10px;
         *height:60px; /* IE7备用高度 */
     }
-    #left-info a {
+    #left-info {
+        width:283px;
+        left:6px;
+        top:278px;
+    }
+    #right-info {
+        width:203px;
+        left:291px;
+        top:281px;
+    }
+    #left-info a, #right-info a {
         display:block;
         color:#444 !important;
         text-decoration:none;
-        font-size:10px;
-        line-height:12px !important; /* 行距统一为12px */
-        padding:2px 3px !important;  /* 间距缩小 */
+        line-height:12px !important;
+        padding:2px 3px !important;
     }
-    #left-info a.highlight {
+    #left-info a.highlight, #right-info a.highlight {
         color:#9E511C !important;
     }
-    #left-info a:hover {
+    #left-info a:hover, #right-info a:hover {
         color:#f60 !important;
         text-decoration:underline !important;
     }
 
-    /* 右侧信息窗 */
-    #right-info {
-        position:absolute;
+    /* 右侧表格布局终极优化 */
+    #right-info .link-table {
         width:203px;
-        height:75px;
-        left:291px;
-        top:281px;
-        overflow:visible;
-        font-size:0;
-        text-align:left !important;
-        *padding-left:0;
+        border-collapse:collapse;
+        *margin:-1px 0 1px -3px; /* IE7四边距优化 */
+        margin:2px 0;
     }
-    .right-link, .inline-link {
-    color:#444 !important;
-    text-decoration:none !important;
-    font-size:10px !important;
-    line-height:12px !important;
-    font-family: "Microsoft YaHei", SimSun, Arial;
-}
-    .right-link:first-child {
-        color:#9E511C !important;
+    #right-info .link-cell {
+        width:50%;
+        padding:0;
+        *padding:0 1px; /* IE7单元格压缩 */
     }
-    .right-link:hover, .inline-link:hover {
-        color:#f60 !important;
+    #right-info .link-cell a {
+        display:block;
+        width:101px; 
+        *width:99px;  /* IE7宽度补偿 */
+        color:#06c !important;
         text-decoration:underline !important;
+        white-space:nowrap;
+        letter-spacing:-1px; /* 字符间距压缩 */
+        _margin-right:-1px; /* IE6最终微调 */
+        padding:2px 1px !important; /* 横向间距压缩 */
     }
-    .inline-link {
-        display:inline-block;
-        *display:inline;
-        zoom:1;
-        width:48% !important;
-        vertical-align:top;
-        text-align:left !important;
-        *margin-right:1%;
-        padding:2px 0 !important; /* 间距统一 */
-    }
-    
-    /* 版本信息行距 */
-    #right-info > div > div {
-    font-size:10px !important;
-    color:#444 !important;
-    line-height:12px !important;
-    padding:2px 0 !important;
-    font-family: "Microsoft YaHei", SimSun, Arial;
-}
     </style>
 </head>
 
@@ -229,8 +214,8 @@
             <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
             
             <p style="color:#666;margin:8px 0 0 0">
-                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
-                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
+                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。
+                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等
                 服务将和无密保用户一致。
             </p>
         </div>
@@ -254,21 +239,17 @@
         <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
     </div>
     
-    <!-- 右侧信息窗 -->
+    <!-- 右侧信息窗（终极紧凑布局） -->
     <div id="right-info">
-        <a href="https://tl.changyou.com/index.shtml" class="right-link">搜狐畅游产品评测专员热招！欢迎加盟</a>
-        <div class="row" style="font-size:0; white-space:nowrap;">
-            <a href="https://tlhj.changyou.com/" class="inline-link">最新手动补丁下载</a>
-            <a href="https://tlbbgl.changyou.com/" class="inline-link">手机靓图免费下载</a>
-        </div>
-        <!-- 版本信息 -->
-<a href="javascript:void(0);" class="inline-link" style="color:#444 !important; cursor:default;">更新版本:tlbb-0.85.0600-0.85.0858</a>
-<a href="javascript:void(0);" class="inline-link" style="color:#444 !important; cursor:default;">大小：11.8MB 更新日期：09-5-14</a>
-
-            <div style="display:block !important; line-height:12px; padding:2px 0;">
-                大小：11.8MB 更新日期：09-5-14
-            </div>
-        </div>
+        <a href="https://www.baidu.com/" class="highlight">搜狐畅游产品评测专员热招！欢迎加盟</a>
+        <table class="link-table">
+            <tr>
+                <td class="link-cell"><a href="https://www.tencent.com/">最新手动补丁下载</a></td>
+                <td class="link-cell"><a href="https://www.sina.com.cn/">手机靓图免费下载</a></td>
+            </tr>
+        </table>
+        <a href="javascript:void(0)">更新版本:tlbb-0.85.0600-0.85.0858</a>
+        <a href="javascript:void(0)">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</a>
     </div>
 </div>
 
@@ -287,8 +268,6 @@ if (!document.getElementsByClassName) {
     };
 }
 
-
-// 替代 getElementsByClassName（兼容 IE7）
 function getElementsByClassName(node, className) {
     var elements = node.getElementsByTagName("*");
     var result = [];
@@ -323,12 +302,10 @@ function startCarousel() {
 window.onload = function(){
     var btns = getElementsByClassName(document, 'ctrl-btn');
     
-    // 为每个按钮添加索引标记
     for(var i=0; i<btns.length; i++){
         btns[i].setAttribute('index', i);
     }
     
-    // 事件绑定
     for(var i=0; i<btns.length; i++){
         btns[i].onmouseover = function(){
             clearInterval(carouselTimer);
