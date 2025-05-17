@@ -1,1 +1,2 @@
-kKgOXtJ8igzPoUKHV+yvxXmfdI3yi14YQmhNPmqkKK2DxpFroVbuPqhZVSFyG8kjBaz5A7C3pl1ea5CIEuJmZiGcdES3MSXHxTZ6q7Q9L6SdJIas4oASGnAa/2Gc0V7F5k/yOnH8Bh9kBIhPYFJnNQ==
+服务器IP|登陆端口|游戏端口|大区名称|服务器名称|数据库IP|数据库用户名|数据库密码|数据库名称|数据库端口
+49.232.210.25|7384|3731|华北网通|紫禁之巅|49.232.210.25|root|992499|web|3306
