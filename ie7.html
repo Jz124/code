@@ -180,20 +180,17 @@
 		width: 203px;
 		overflow: hidden;
 		font-size: 10px;
-		white-space: nowrap;
+		zoom: 1;
 	}
-	#right-info .right-link-item {
-		display: inline-block;
-		*display: inline; /* IE7 */
-		zoom: 1;          /* IE7 */
-		width: 96px;      /* 使两项之间只剩一个字宽的间距 */
+	#right-info .right-link-float {
+		float: left;
+		width: 97px;  /* 调整宽度到极限，确保并排且间距仅1px左右 */
 		color: #06c !important;
 		text-decoration: underline !important;
 		white-space: nowrap;
 		padding: 2px 0;
 		letter-spacing: -0.5px;
-		vertical-align: top;
-		margin: 0 4px 0 0; /* 4px约等于一个汉字宽度，可微调 */
+		margin: 0;
 	}
     </style>
 </head>
@@ -251,10 +248,9 @@
     <!-- 右侧信息窗 -->
     <div id="right-info">
         <a href="https://www.baidu.com/" class="highlight" target="_blank">搜狐畅游产品评测专员热招！欢迎加盟</a>
-        <div class="link-container">
-            <a href="https://www.tencent.com/" target="_blank" class="right-link-item">最新手动补丁下载</a>
-            <a href="https://www.sina.com.cn/" target="_blank" class="right-link-item">手机靓图免费下载</a>
-        </div>
+	<div class="link-container">
+		<a href="https://www.tencent.com/" target="_blank" class="right-link-float">最新手动补丁下载</a><a href="https://www.sina.com.cn/" target="_blank" class="right-link-float">手机靓图免费下载</a>
+	</div>
         <a href="javascript:void(0)">更新版本:tlbb-0.85.0600-0.85.0858</a>
         <a href="javascript:void(0)">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</a>
     </div>
