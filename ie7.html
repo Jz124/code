@@ -150,12 +150,17 @@
         left:289px;
         top:281px;
     }
-    #left-info a, #right-info a {
+    #left-info a, #right-info a,
+    #right-info .right-info-line {
         display:block;
         color:#444 !important;
         text-decoration:none;
         line-height:12px !important;
+        /* 与 #left-info a 保持一致 */
         padding:2px 3px !important;
+        text-align: left !important;
+        font-size: 10px;
+        margin: 0;  /* 保证行距一致 */
     }
     #left-info a.highlight, #right-info a.highlight {
         color:#9E511C !important;
@@ -164,6 +169,8 @@
         color:#f60 !important;
         text-decoration:underline !important;
     }
+
+    /* 右下二列小链接依然保持原有排版 */
     #right-info .link-container {
         width:203px;
         *margin-left:-4px;
@@ -186,13 +193,15 @@
         letter-spacing:-0.5px;
         *margin-right:-2px;
         _margin-right:-3px;
+        text-align:left !important;
+        font-size: 10px;
+        line-height:12px !important;
+        margin: 0;
     }
     </style>
     <!--[if lte IE 8]>
     <style type="text/css">
-        /* 兼容IE7/8的字体 */
         body, #container { font-family: "SimSun", Arial, sans-serif; }
-        /* 对IE7的修正 */
         .ctrl-btn { font-size: 11px; }
     </style>
     <![endif]-->
@@ -201,23 +210,23 @@
 <body>
 <div id="container">
     <!-- 导航按钮 -->
-    <div class="btn" id="btn1"><a href="https://www.17173.com/" target="_blank">官网</a></div>
-    <div class="btn" id="btn2"><a href="https://www.gamersky.com/" target="_blank">新手</a></div>
-    <div class="btn" id="btn3"><a href="https://www.duowan.com/" target="_blank">下载</a></div>
-    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games" target="_blank">论坛</a></div>
-    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/" target="_blank">商城</a></div>
-    <div class="btn" id="btn6"><a href="https://game.163.com/" target="_blank">安全</a></div>
+    <div class="btn" id="btn1"><a href="https://www.17173.com/">官网</a></div>
+    <div class="btn" id="btn2"><a href="https://www.gamersky.com/">新手</a></div>
+    <div class="btn" id="btn3"><a href="https://www.duowan.com/">下载</a></div>
+    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">论坛</a></div>
+    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">商城</a></div>
+    <div class="btn" id="btn6"><a href="https://game.163.com/">安全</a></div>
 
     <!-- 滚动窗口 -->
     <div id="scroll-window">
         <div style="padding:8px">
             <div class="link-pair">
-                <a href="https://www.baidu.com/" class="link-item" target="_blank">免费在线杀毒</a>
-                <a href="https://www.tencent.com/" class="link-item" target="_blank">360安全中心</a>
+                <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
+                <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
             </div>
             <div class="link-pair">
-                <a href="https://www.alibabagroup.com/" class="link-item" target="_blank">天龙客服满意度调查</a>
-                <a href="https://www.sohu.com/" class="link-item" target="_blank">账号安全站</a>
+                <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
+                <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
             </div>
             <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
             <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
@@ -242,24 +251,27 @@
 
     <!-- 左侧信息窗 -->
     <div id="left-info">
-        <a href="https://www.17173.com/" class="highlight" target="_blank">纪念512活动公告</a>
-        <a href="https://www.gamersky.com/" class="highlight" target="_blank">《天龙》5月15日新开服务器公告</a>
-        <a href="https://www.duowan.com/" target="_blank">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
-        <a href="https://news.qq.com/ch/games" target="_blank">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
+        <a href="https://www.17173.com/" class="highlight">纪念512活动公告</a>
+        <a href="https://www.gamersky.com/" class="highlight">《天龙》5月15日新开服务器公告</a>
+        <a href="https://www.duowan.com/">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
+        <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
     </div>
     <!-- 右侧信息窗 -->
     <div id="right-info">
-        <a href="https://www.baidu.com/" class="highlight" target="_blank">搜狐畅游产品评测专员热招！欢迎加盟</a>
+        <!-- 第一行 -->
+        <a href="https://www.baidu.com/" class="highlight">搜狐畅游产品评测专员热招！欢迎加盟</a>
+        <!-- 第二行，两列小链接不变 -->
         <div class="link-container">
             <div class="link-float">
-                <a href="https://www.tencent.com/" target="_blank">最新手动补丁下载</a>
+                <a href="https://www.tencent.com/">最新手动补丁下载</a>
             </div>
             <div class="link-float">
-                <a href="https://www.sina.com.cn/" target="_blank">手机靓图免费下载</a>
+                <a href="https://www.sina.com.cn/">手机靓图免费下载</a>
             </div>
         </div>
-        <a href="javascript:void(0)">更新版本:tlbb-0.85.0600-0.85.0858</a>
-        <a href="javascript:void(0)">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</a>
+        <!-- 第三、四行：用div包裹实现左对齐和一致行高 -->
+        <div class="right-info-line">更新版本:tlbb-0.85.0600-0.85.0858</div>
+        <div class="right-info-line">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</div>
     </div>
 </div>
 
