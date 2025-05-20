@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=GB2312">
-    <title>天龙游戏IE7兼容版优化</title>
+    <meta charset="GB2312">
+    <title>天龙游戏IE7兼容版</title>
     <style type="text/css">
+    /* 新增：全局滚动条隐藏 */
     html, body {
         overflow: hidden !important;
         width: 100%;
@@ -12,188 +13,191 @@
         padding: 0;
     }
 
-    body, div, img {
-        margin: 0;
-        padding: 0;
-        border: 0;
+    /* 基础重置 */
+    body,div,img {
+        margin:0;
+        padding:0;
+        border:0;
     }
 
+    /* 主容器 */
     #container {
         position: relative;
-        width: 502px;
-        height: 351px;
-        border: 1px solid #ccc;
+        width:502px;
+        height:351px;
+        border:1px solid #ccc;
         font-family: "Microsoft YaHei", SimSun, Arial;
-        background: #F7E08D;
-        overflow: visible !important;
+        background:#F7E08D;
+        overflow: visible !important;  /* 允许内部元素溢出 */
     }
 
+    /* 导航按钮样式 */
     .btn {
         position: absolute;
-        width: 76px;
-        height: 26px;
-        top: 13px;
-        background: #DE6E22;
-        border: 1px solid #B3591B;
-        text-align: center;
-        line-height: 26px;
+        width:76px;
+        height:26px;
+        top:13px;
+        background:#DE6E22;
+        border:1px solid #B3591B;
+        text-align:center;
+        line-height:26px;
         font-family: "Microsoft YaHei", SimSun, Arial;
-        cursor: pointer;
     }
     .btn a {
-        display: block;
-        width: 76px;
-        height: 26px;
-        color: #fff !important;
-        text-decoration: none;
+        display:block;
+        width:76px;
+        height:26px;
+        color:#fff !important;
+        text-decoration:none;
     }
     .btn a:hover {
-        background: #B3591B;
+        background:#B3591B;
     }
 
-    #btn1 { left: 3px; }
-    #btn2 { left: 86px; }
-    #btn3 { left: 169px; }
-    #btn4 { left: 252px; }
-    #btn5 { left: 335px; }
-    #btn6 { left: 418px; }
+    /* 导航按钮定位，全部左移2px */
+    #btn1 { left:3px; }
+    #btn2 { left:86px; }
+    #btn3 { left:169px; }
+    #btn4 { left:252px; }
+    #btn5 { left:335px; }
+    #btn6 { left:418px; }
 
+    /* 滚动窗口样式，左移2px */
     #scroll-window {
-        position: absolute;
-        width: 283px;
-        height: 224px;
-        left: 4px;
-        top: 51px;
-        border: 2px solid #8F7929;
-        overflow: auto;
-        background: #FEFBC5;
-        font-size: 14px;
-        _overflow-x: hidden; /* IE6/7 hide x-scroll */
+        position:absolute;
+        width:283px;
+        height:224px;
+        left:4px;
+        top:51px;
+        border:2px solid #8F7929;
+        overflow:auto;
+        background:#FEFBC5;
+        font-size:14px;
     }
     .link-pair {
-        margin: 4px 0;
-        overflow: hidden;
-        zoom: 1; /* IE6/7清除浮动 */
+        margin:4px 0;
+        overflow:hidden;
+        *zoom:1;
     }
     .link-item {
-        float: left;
-        width: 48%;
-        color: #06c;
-        text-decoration: underline !important;
-        white-space: nowrap;
-        display: inline; /* IE7 Fix: inline-block bug */
+        float:left;
+        width:48%;
+        color:#06c;
+        text-decoration:underline !important;
+        white-space:nowrap;
     }
     .link-item + .link-item {
-        margin-left: 4%;
+        margin-left:4%;
     }
 
+    /* 轮播窗口，左移2px */
     #carousel {
-        position: absolute;
-        width: 203px;
-        height: 227px;
-        left: 289px;
-        top: 51px;
-        border: 1px solid #666;
-        overflow: hidden;
-        z-index: 1;
-        background: #fff;
+        position:absolute;
+        width:203px;
+        height:227px;
+        left:289px;
+        top:51px;
+        border:1px solid #666;
+        overflow:hidden;
+        z-index:1;
     }
     .carousel-img {
-        position: absolute;
-        width: 203px;
-        height: 227px;
-        display: none;
-        top: 0;
-        left: 0;
-        z-index: 1;
+        position:absolute;
+        width:203px;
+        height:227px;
+        display:none;
     }
     .carousel-img.active {
-        display: block;
-        z-index: 2;
+        display:block;
+        z-index:1;
     }
 
+    /* 轮播按钮样式 (新增激活状态) */
     .ctrl-btn {
-        position: absolute;
-        width: 19px;
-        height: 14px;
-        bottom: 1px;
-        border: 1px solid #FF6600 !important;
-        background: #FF9900;
-        color: #fff !important;
-        font: bold 12px/14px Arial;
-        text-align: center;
-        cursor: pointer;
-        z-index: 999;
-        filter: alpha(opacity=30);
-        opacity: 0.3;
+        position:absolute;
+        width:19px;
+        height:14px;
+        bottom:1px;
+        border:1px solid #FF6600 !important;
+        background:#FF9900;
+        color:#fff !important;
+        font:bold 12px/14px Arial;
+        text-align:center;
+        cursor:pointer;
+        z-index:999;
+        filter:alpha(opacity=30);
     }
     .ctrl-btn.active {
-        background: #FF6600 !important;
-        filter: alpha(opacity=100) !important;
-        opacity: 1 !important;
-        border-color: #B3591B !important;
+        background:#FF6600 !important;
+        filter:alpha(opacity=100) !important;
+        border-color:#B3591B !important;
     }
-    #ctrl1 { left: 139px; }
-    #ctrl2 { left: 159px; }
-    #ctrl3 { left: 179px; }
+    #ctrl1 { left:139px; }
+    #ctrl2 { left:159px; }
+    #ctrl3 { left:179px; }
     .ctrl-btn:hover {
-        filter: alpha(opacity=100);
-        opacity: 1;
+        filter:alpha(opacity=100);
     }
-    * html .ctrl-btn { zoom: 1; }
+    * html .ctrl-btn { 
+        zoom:1;
+    }
 
+    /* 统一信息窗样式 */
     #left-info, #right-info {
-        position: absolute;
-        height: auto !important;
-        overflow: visible !important;
-        font-size: 10px;
-        zoom: 1;
+        position:absolute;
+        height:auto !important;
+        overflow:visible !important;
+        font-size:10px;
+        *height:60px; /* IE7备用高度 */
     }
     #left-info {
-        width: 283px;
-        left: 4px;
-        top: 278px;
+        width:283px;
+        left:4px;
+        top:278px;
     }
     #right-info {
-        width: 203px;
-        left: 289px;
-        top: 281px;
+        width:203px;
+        left:289px;
+        top:281px;
     }
     #left-info a, #right-info a {
-        display: block;
-        color: #444 !important;
-        text-decoration: none;
-        line-height: 12px !important;
-        padding: 2px 3px !important;
+        display:block;
+        color:#444 !important;
+        text-decoration:none;
+        line-height:12px !important;
+        padding:2px 3px !important;
     }
     #left-info a.highlight, #right-info a.highlight {
-        color: #9E511C !important;
-        font-weight: bold;
+        color:#9E511C !important;
     }
     #left-info a:hover, #right-info a:hover {
-        color: #f60 !important;
-        text-decoration: underline !important;
+        color:#f60 !important;
+        text-decoration:underline !important;
     }
 
-    /* 右侧信息行两列左对齐并单行显示 */
+    /* 右侧终极紧凑布局方案 */
     #right-info .link-container {
-        width: 203px;
-        overflow: hidden;
-        font-size: 10px;
-        white-space: nowrap;
+        width:203px;
+        *margin-left:-4px; /* IE7左移修正 */
+        overflow:hidden;
     }
-    #right-info .right-link-item {
-        display: inline-block;
-        *display: inline; /* IE7 */
-        zoom: 1;          /* IE7 */
-        width: 98px;
-        color: #06c !important;
-        text-decoration: underline !important;
-        white-space: nowrap;
-        padding: 2px 0;
-        letter-spacing: -0.5px;
-        vertical-align: top;
-        margin: 0;
+    #right-info .link-float {
+        float:left;
+        width:101px;
+        *width:99px; /* IE7盒模型补偿 */
+        _width:100px; /* IE6备用方案 */
+    }
+    #right-info .link-float a {
+        display:block;
+        width:98px;
+        *width:96px; /* IE7二次修正 */
+        color:#06c !important;
+        text-decoration:underline !important;
+        white-space:nowrap;
+        padding:2px 0;
+        letter-spacing:-0.5px; /* 压缩字符间距 */
+        *margin-right:-2px; /* IE7右间距消除 */
+        _margin-right:-3px; /* IE6最终调整 */
     }
     </style>
 </head>
@@ -201,7 +205,7 @@
 <body>
 <div id="container">
     <!-- 导航按钮 -->
-    <div class="btn" id="btn1"><a href="https://www.17173.com/" target="_blank">官网</a></div>
+    <div class="btn" id="btn1"><a href="https://www.17173.com/" target="">官网</a></div>
     <div class="btn" id="btn2"><a href="https://www.gamersky.com/" target="_blank">新手</a></div>
     <div class="btn" id="btn3"><a href="https://www.duowan.com/" target="_blank">下载</a></div>
     <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games" target="_blank">论坛</a></div>
@@ -219,9 +223,12 @@
                 <a href="https://www.alibabagroup.com/" class="link-item" target="_blank">天龙客服满意度调查</a>
                 <a href="https://www.sohu.com/" class="link-item" target="_blank">账号安全站</a>
             </div>
+
             <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
             <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
+            
             <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
+            
             <p style="color:#666;margin:8px 0 0 0">
                 暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
                 已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
@@ -232,9 +239,9 @@
 
     <!-- 轮播窗口 -->
     <div id="carousel">
-        <img src="1.png" class="carousel-img active" alt="">
-        <img src="2.png" class="carousel-img" alt="">
-        <img src="3.png" class="carousel-img" alt="">
+        <img src="1.png" class="carousel-img active">
+        <img src="2.png" class="carousel-img">
+        <img src="3.png" class="carousel-img">
         <div class="ctrl-btn" id="ctrl1">1</div>
         <div class="ctrl-btn" id="ctrl2">2</div>
         <div class="ctrl-btn" id="ctrl3">3</div>
@@ -252,8 +259,12 @@
     <div id="right-info">
         <a href="https://www.baidu.com/" class="highlight" target="_blank">搜狐畅游产品评测专员热招！欢迎加盟</a>
         <div class="link-container">
-            <a href="https://www.tencent.com/" target="_blank" class="right-link-item">最新手动补丁下载</a>
-            <a href="https://www.sina.com.cn/" target="_blank" class="right-link-item">手机靓图免费下载</a>
+            <div class="link-float">
+                <a href="https://www.tencent.com/" target="_blank">最新手动补丁下载</a>
+            </div>
+            <div class="link-float">
+                <a href="https://www.sina.com.cn/" target="_blank">手机靓图免费下载</a>
+            </div>
         </div>
         <a href="javascript:void(0)">更新版本:tlbb-0.85.0600-0.85.0858</a>
         <a href="javascript:void(0)">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</a>
@@ -261,11 +272,12 @@
 </div>
 
 <script type="text/javascript">
-// === IE7 getElementsByClassName Polyfill ===
+// ================ IE7兼容性补丁 ================
 if (!document.getElementsByClassName) {
     document.getElementsByClassName = function(className) {
-        var all = document.getElementsByTagName('*'), elements = [];
-        for (var i = 0; i < all.length; i++) {
+        var all = document.all || document.getElementsByTagName('*');
+        var elements = [];
+        for (var i=0; i<all.length; i++) {
             if ((' ' + all[i].className + ' ').indexOf(' ' + className + ' ') > -1) {
                 elements.push(all[i]);
             }
@@ -274,75 +286,65 @@ if (!document.getElementsByClassName) {
     };
 }
 
+function getElementsByClassName(node, className) {
+    var elements = node.getElementsByTagName("*");
+    var result = [];
+    for (var i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + className + ' ') > -1) {
+            result.push(elements[i]);
+        }
+    }
+    return result;
+}
+
 // ================ 轮播控制脚本 ================
-(function() {
-    var currentIndex = 0;
-    var carouselTimer = null;
+var currentIndex = 0;
+var carouselTimer = null;
 
-    function getByClass(cls, parent) {
-        parent = parent || document;
-        if (parent.getElementsByClassName) {
-            return parent.getElementsByClassName(cls);
-        } else {
-            var all = parent.getElementsByTagName('*'), result = [];
-            for (var i = 0; i < all.length; i++) {
-                if ((' ' + all[i].className + ' ').indexOf(' ' + cls + ' ') > -1) {
-                    result.push(all[i]);
-                }
-            }
-            return result;
+function switchSlide(index) {
+    var imgs = document.getElementsByClassName('carousel-img');
+    var btns = document.getElementsByClassName('ctrl-btn');
+    
+    // 更新轮播图状态
+    for(var i=0; i<imgs.length; i++){
+        imgs[i].style.display = 'none';
+        btns[i].className = btns[i].className.replace(/\s?active/g, '');
+    }
+    imgs[index].style.display = 'block';
+    btns[index].className += ' active';
+    
+    currentIndex = index;
+}
+
+function startCarousel() {
+    carouselTimer = setInterval(function(){
+        currentIndex = (currentIndex+1)%3;
+        switchSlide(currentIndex);
+    }, 4000);
+}
+
+window.onload = function(){
+    var btns = document.getElementsByClassName('ctrl-btn');
+    
+    // 初始化第一个按钮状态
+    switchSlide(0);
+    
+    // 绑定按钮事件
+    for(var i=0; i<btns.length; i++){
+        btns[i].setAttribute('index', i);
+        btns[i].onmouseover = function(){
+            clearInterval(carouselTimer);
+            var index = parseInt(this.getAttribute('index'));
+            switchSlide(index);
+        }
+        btns[i].onmouseout = function(){
+            startCarousel();
         }
     }
-
-    function switchSlide(index) {
-        var imgs = getByClass('carousel-img');
-        var btns = getByClass('ctrl-btn');
-        for (var i = 0; i < imgs.length; i++) {
-            imgs[i].style.display = 'none';
-            imgs[i].className = imgs[i].className.replace(/\s?active/g, '');
-            btns[i].className = btns[i].className.replace(/\s?active/g, '');
-        }
-        imgs[index].style.display = 'block';
-        imgs[index].className += ' active';
-        btns[index].className += ' active';
-        currentIndex = index;
-    }
-
-    function startCarousel() {
-        if(carouselTimer) clearInterval(carouselTimer);
-        carouselTimer = setInterval(function() {
-            currentIndex = (currentIndex + 1) % 3;
-            switchSlide(currentIndex);
-        }, 4000);
-    }
-
-    function stopCarousel() {
-        if(carouselTimer) clearInterval(carouselTimer);
-    }
-
-    function initCarousel() {
-        var btns = getByClass('ctrl-btn');
-        switchSlide(0);
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].setAttribute('data-index', i);
-            btns[i].onmouseover = function() {
-                stopCarousel();
-                var idx = parseInt(this.getAttribute('data-index'), 10);
-                switchSlide(idx);
-            };
-            btns[i].onmouseout = function() {
-                startCarousel();
-            };
-        }
-        startCarousel();
-    }
-
-    if (window.attachEvent) {
-        window.attachEvent('onload', initCarousel);
-    } else {
-        window.addEventListener('load', initCarousel, false);
-    }
-})();
+    
+    // 启动自动轮播
+    startCarousel();
+}
 </script>
 </body>
 </html>
