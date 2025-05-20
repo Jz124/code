@@ -356,6 +356,72 @@ window.onload = function(){
     }
     startCarousel();
 };
+
+// ================ 禁用右键与所有常见快捷键 ================
+document.oncontextmenu = function() {
+    return false;
+};
+
+document.onkeydown = function(e) {
+    e = e || window.event;
+    var keyCode = e.keyCode || e.which;
+    var isCtrl = e.ctrlKey;
+    var isShift = e.shiftKey;
+    var isAlt = e.altKey;
+
+    // 禁用F1~F12
+    if (keyCode >= 112 && keyCode <= 123) return false;
+
+    // 常见开发者、保存、打印、查找、关闭、刷新等快捷键
+    if (
+        // 开发者工具
+        (isCtrl && isShift && (keyCode === 73 || keyCode === 67 || keyCode === 74 || keyCode === 75)) || // Ctrl+Shift+I/C/J/K
+        (isCtrl && isShift && keyCode === 68) || // Ctrl+Shift+D
+        (isCtrl && keyCode === 85) ||       // Ctrl+U
+        (isCtrl && keyCode === 83) ||       // Ctrl+S
+        (isCtrl && keyCode === 80) ||       // Ctrl+P
+        (isCtrl && keyCode === 79) ||       // Ctrl+O
+        (isCtrl && keyCode === 70) ||       // Ctrl+F
+        (isCtrl && isShift && keyCode === 70) || // Ctrl+Shift+F
+        (isCtrl && keyCode === 78) ||       // Ctrl+N
+        (isCtrl && keyCode === 82) ||       // Ctrl+R
+        (isCtrl && isShift && keyCode === 82) || // Ctrl+Shift+R
+        (isCtrl && keyCode === 87) ||       // Ctrl+W
+        (isCtrl && keyCode === 9) ||        // Ctrl+Tab
+        (isCtrl && isShift && keyCode === 84) || // Ctrl+Shift+T
+        (isCtrl && isShift && keyCode === 78) || // Ctrl+Shift+N
+        (isCtrl && isShift && keyCode === 68) || // Ctrl+Shift+D
+        (isCtrl && keyCode === 69) ||       // Ctrl+E
+        (isCtrl && keyCode === 72) ||       // Ctrl+H
+        (isCtrl && isShift && keyCode === 72) || // Ctrl+Shift+H
+        (isCtrl && keyCode === 65) ||       // Ctrl+A
+        (isCtrl && keyCode === 67) ||       // Ctrl+C
+        (isCtrl && keyCode === 88) ||       // Ctrl+X
+        (isCtrl && keyCode === 86) ||       // Ctrl+V
+        (isCtrl && keyCode === 45) ||       // Ctrl+Insert
+        (isShift && keyCode === 45) ||      // Shift+Insert
+        (isCtrl && isShift && keyCode === 46) || // Ctrl+Shift+Del
+        (isCtrl && keyCode === 116) ||      // Ctrl+F5
+        (isCtrl && keyCode === 123)         // Ctrl+F12
+    ) {
+        return false;
+    }
+
+    // Alt+F4 关闭窗口
+    if (isAlt && keyCode === 115) return false;
+
+    // 禁止F5刷新
+    if (keyCode === 116) return false;
+
+    // 禁止Ctrl+Shift+O
+    if (isCtrl && isShift && keyCode === 79) return false;
+
+    // 禁止Ctrl+Shift+P
+    if (isCtrl && isShift && keyCode === 80) return false;
+
+    // 禁止Ctrl+Shift+S
+    if (isCtrl && isShift && keyCode === 83) return false;
+};
 </script>
 </body>
 </html>
