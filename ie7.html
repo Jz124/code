@@ -176,25 +176,25 @@
     }
 
     /* 右侧信息行两列左对齐并单行显示 */
-    #right-info .link-container {
-        width: 203px;
-        overflow: hidden;
-        font-size: 10px;
-        white-space: nowrap;
-    }
-    #right-info .right-link-item {
-        display: inline-block;
-        *display: inline; /* IE7 */
-        zoom: 1;          /* IE7 */
-        width: 98px;
-        color: #06c !important;
-        text-decoration: underline !important;
-        white-space: nowrap;
-        padding: 2px 0;
-        letter-spacing: -0.5px;
-        vertical-align: top;
-        margin: 0;
-    }
+	#right-info .link-container {
+		width: 203px;
+		overflow: hidden;
+		font-size: 10px;
+		white-space: nowrap;
+	}
+	#right-info .right-link-item {
+		display: inline-block;
+		*display: inline; /* IE7 */
+		zoom: 1;          /* IE7 */
+		width: 96px;      /* 使两项之间只剩一个字宽的间距 */
+		color: #06c !important;
+		text-decoration: underline !important;
+		white-space: nowrap;
+		padding: 2px 0;
+		letter-spacing: -0.5px;
+		vertical-align: top;
+		margin: 0 4px 0 0; /* 4px约等于一个汉字宽度，可微调 */
+	}
     </style>
 </head>
 
