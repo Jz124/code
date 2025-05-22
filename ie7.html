@@ -2,169 +2,174 @@
 <html>
 <head>
     <meta charset="GB2312">
-    <title>天龙游戏IE7兼容版</title>
-    <style type="text/css">
+    <title>天龙游戏IE7兼容版（自适应）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
     html, body {
-        overflow: hidden !important;
-        width: 100%;
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+        box-sizing: border-box;
     }
-    body,div,img {
-        margin:0;
-        padding:0;
-        border:0;
+    body {
+        width: 100vw;
+        height: 100vh;
     }
     #container {
-        position: relative;
-        width:502px;
-        height:351px;
-        border:1px solid #ccc;
-        font-family: "Microsoft YaHei", SimSun, Arial;
-        background:#F7E08D;
-        overflow: visible !important;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        background: #F7E08D;
+        box-sizing: border-box;
+    }
+    /* 顶部导航栏 */
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.8vw;
+        padding: 1vw 1vw 0.5vw 1vw;
+        min-height: 36px;
+        flex: 0 0 auto;
     }
     .btn {
-        position: absolute;
-        width:76px;
-        height:26px;
-        top:13px;
-        background:#DE6E22;
-        border:1px solid #B3591B;
+        flex: 1 1 0;
+        min-width: 60px;
+        max-width: 120px;
+        height: 2.5em;
+        background: #DE6E22;
+        border: 1px solid #B3591B;
         text-align:center;
-        line-height:26px;
+        line-height:2.5em;
+        margin: 0 0.2vw;
         font-family: "Microsoft YaHei", SimSun, Arial;
         cursor: pointer;
+        border-radius: 4px;
+        box-sizing: border-box;
+        position: relative;
     }
     .btn a {
         display:block;
-        width:76px;
-        height:26px;
+        width:100%;
+        height:100%;
         color:#fff !important;
         text-decoration:none;
+        font-size: 1em;
     }
     .btn a:hover {
-        background:#B3591B;
+        background: #B3591B;
     }
-    #btn1 { left:3px; }
-    #btn2 { left:86px; }
-    #btn3 { left:169px; }
-    #btn4 { left:252px; }
-    #btn5 { left:335px; }
-    #btn6 { left:418px; }
+    /* 主内容区 */
+    .main-content {
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 0;
+        min-width: 0;
+        gap: 1vw;
+        padding: 0 1vw;
+    }
+    /* 滚动窗口 */
     #scroll-window {
-        position:absolute;
-        width:283px;
-        height:224px;
-        left:4px;
-        top:51px;
-        border:1px solid #8F7929;
-        overflow:auto;
-        background:#FEFBC5;
-        font-size:14px;
-        /* IE专有滚动条颜色样式，仿照图片1 */
-        scrollbar-base-color: #FFF3C1;           /* 基色，淡黄色 */
-        scrollbar-face-color: #FFF3C1;           /* 滚动条滑块主体：淡黄 */
-        scrollbar-arrow-color: #B3591B;          /* 箭头颜色：深棕 */
-        scrollbar-track-color: #F7E08D;          /* 轨道颜色：亮黄 */
-        scrollbar-shadow-color: #B3591B;         /* 滚动条右/下阴影：深棕 */
-        scrollbar-highlight-color: #FFF3C1;      /* 左/上高光：淡黄 */
-        scrollbar-3dlight-color: #F7E08D;        /* 3D高光：亮黄 */
-        scrollbar-darkshadow-color: #502D0C;     /* 3D阴影：深棕色 */
+        flex: 2 1 0;
+        min-width: 0;
+        background: #FEFBC5;
+        border: 1px solid #8F7929;
+        overflow: auto;
+        font-size: 1.1em;
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+    #scroll-window > div {
+        padding: 1em 0.8em;
     }
     .link-pair {
         margin:4px 0;
-        overflow:hidden;
-        zoom:1;
+        display: flex;
+        gap: 0.7em;
     }
     .link-item {
-        float:left;
-        width:48%;
-        color:#06c;
-        text-decoration:underline !important;
-        white-space:nowrap;
+        flex: 1 1 0;
+        color: #06c;
+        text-decoration: underline !important;
+        white-space: nowrap;
+        font-size: 1em;
     }
-    .link-item + .link-item {
-        margin-left:4%;
-    }
+    /* 轮播窗口 */
     #carousel {
-        position:absolute;
-        width:203px;
-        height:227px;
-        left:289px;
-        top:51px;
-        border:1px solid #666;
-        overflow:hidden;
-        z-index:1;
+        flex: 1 1 0;
+        min-width: 180px;
+        max-width: 320px;
+        background: #fff;
+        border: 1px solid #666;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
     .carousel-img {
-        position:absolute;
-        width:203px;
-        height:227px;
-        display:none;
-        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: none;
+        left: 0;
+        top: 0;
+        background: #fff;
+        transition: opacity 0.3s;
     }
     .carousel-img.active {
-        display:block;
-        z-index:1;
-        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+        display: block;
+        z-index: 1;
+        opacity: 1;
     }
     .ctrl-btn {
-        position:absolute;
-        width:19px;
-        height:14px;
-        bottom:1px;
-        border:1px solid #FF6600 !important;
-        background:#FF9900;
-        color:#fff !important;
-        font:bold 12px/14px Arial;
-        text-align:center;
-        cursor:pointer;
-        z-index:999;
-        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30);
-        _filter:alpha(opacity=30);
-        line-height:14px;
+        position: absolute;
+        width: 8vw;
+        max-width: 24px;
+        min-width: 15px;
+        height: 1.6em;
+        bottom: 6px;
+        border: 1px solid #FF6600 !important;
+        background: #FF9900;
+        color: #fff !important;
+        font: bold 1em Arial;
+        text-align: center;
+        cursor: pointer;
+        z-index: 999;
+        opacity: 0.4;
+        line-height: 1.6em;
+        border-radius: 3px;
     }
-    .ctrl-btn.active {
-        background:#FF6600 !important;
-        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100) !important;
-        _filter:alpha(opacity=100) !important;
-        border-color:#B3591B !important;
+    .ctrl-btn.active, .ctrl-btn:hover {
+        background: #FF6600 !important;
+        opacity: 1;
+        border-color: #B3591B !important;
     }
-    #ctrl1 { left:139px; }
-    #ctrl2 { left:159px; }
-    #ctrl3 { left:179px; }
-    .ctrl-btn:hover {
-        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-        _filter:alpha(opacity=100);
-    }
-    * html .ctrl-btn { 
-        zoom:1;
+    #ctrl1 { left: 55%; transform: translateX(-120%);}
+    #ctrl2 { left: 62%; transform: translateX(-50%);}
+    #ctrl3 { left: 69%; transform: translateX(20%);}
+    /* 信息栏 */
+    .info-bar {
+        display: flex;
+        flex: 0 0 auto;
+        justify-content: space-between;
+        gap: 1vw;
+        padding: 0.5vw 1vw 1vw 1vw;
+        min-height: 50px;
     }
     #left-info, #right-info {
-        position:absolute;
-        height:auto !important;
-        overflow:visible !important;
-        font-size:10px;
-        *height:60px;
-        font-family: "Microsoft YaHei", SimSun, Arial;
-        line-height: 9px; /* 行距缩小一半 */
-    }
-    #left-info {
-        width:283px;
-        left:4px;
-        top:282px;
-    }
-    #right-info {
-        width:203px;
-        left:289px;
-        top:282px;
-        font-family: "Microsoft YaHei", SimSun, Arial;
-    }
-    #left-info a, #right-info a,
-    #right-info .info-row, #right-info .link-row, #right-info .link-float a {
-        line-height: 9px !important; /* 同步缩小行距 */
+        flex: 1 1 0;
+        min-width: 0;
+        background: transparent;
+        font-size: 0.93em;
+        line-height: 1.3em;
     }
     #left-info a, #right-info a {
         display:block;
@@ -172,6 +177,7 @@
         text-decoration:none;
         padding:2px 3px !important;
         font-family: "Microsoft YaHei", SimSun, Arial;
+        font-size: 1em;
     }
     #left-info a.highlight, #right-info a.highlight {
         color:#9E511C !important;
@@ -187,14 +193,14 @@
         margin: 0 0 2px 0;
     }
     #right-info .link-container {
-        width:203px;
+        width:100%;
         overflow:hidden;
-        display: block;
+        display: flex;
+        gap: 0.5em;
         font-family: "Microsoft YaHei", SimSun, Arial;
     }
     #right-info .link-float {
-        float:left;
-        width:49%;
+        flex: 1 1 0;
         font-family: "Microsoft YaHei", SimSun, Arial;
     }
     #right-info .link-float a {
@@ -214,84 +220,105 @@
         padding:2px 3px;
         margin:0;
     }
+    /* 响应式优化 */
+    @media (max-width: 900px) {
+        .main-content {
+            flex-direction: column;
+            gap: 1em;
+        }
+        #carousel, #scroll-window {
+            max-width: 100vw;
+            width: 100%;
+            min-width: 0;
+        }
+        .info-bar {
+            flex-direction: column;
+            gap: 0.5em;
+        }
+    }
+    @media (max-width: 600px) {
+        .nav-bar {
+            flex-direction: column;
+            gap: 0.5em;
+        }
+        .btn {
+            min-width: 40px;
+            font-size: 0.9em;
+        }
+        #container {
+            font-size: 14px;
+        }
+    }
     </style>
-    <!--[if lte IE 8]>
-    <style type="text/css">
-        body, #container, #left-info, #right-info { font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif; }
-        .ctrl-btn { font-size: 11px; }
-        #right-info .link-float { width:49%; }
-        #right-info .link-float a { width:auto; }
-    </style>
-    <![endif]-->
 </head>
-
 <body>
 <div id="container">
-    <!-- 导航按钮 -->
-    <div class="btn" id="btn1"><a href="https://www.17173.com/">官网</a></div>
-    <div class="btn" id="btn2"><a href="https://www.gamersky.com/">新手</a></div>
-    <div class="btn" id="btn3"><a href="https://www.duowan.com/">下载</a></div>
-    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">论坛</a></div>
-    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">商城</a></div>
-    <div class="btn" id="btn6"><a href="https://game.163.com/">安全</a></div>
-
-    <!-- 滚动窗口 -->
-    <div id="scroll-window">
-        <div style="padding:8px">
-            <div class="link-pair">
-                <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
-                <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
+    <!-- 顶部导航 -->
+    <div class="nav-bar">
+        <div class="btn" id="btn1"><a href="https://www.17173.com/">官网</a></div>
+        <div class="btn" id="btn2"><a href="https://www.gamersky.com/">新手</a></div>
+        <div class="btn" id="btn3"><a href="https://www.duowan.com/">下载</a></div>
+        <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">论坛</a></div>
+        <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">商城</a></div>
+        <div class="btn" id="btn6"><a href="https://game.163.com/">安全</a></div>
+    </div>
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 滚动窗口 -->
+        <div id="scroll-window">
+            <div>
+                <div class="link-pair">
+                    <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
+                    <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
+                </div>
+                <div class="link-pair">
+                    <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
+                    <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
+                </div>
+                <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
+                <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
+                <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
+                <p style="color:#666;margin:8px 0 0 0">
+                    暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
+                    已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
+                    服务将和无密保用户一致。
+                </p>
             </div>
-            <div class="link-pair">
-                <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
-                <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
-            </div>
-            <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
-            <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
-            <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
-            <p style="color:#666;margin:8px 0 0 0">
-                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
-                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
-                服务将和无密保用户一致。
-            </p>
+        </div>
+        <!-- 轮播窗口 -->
+        <div id="carousel">
+            <img src="1.png" class="carousel-img active" alt="carousel1">
+            <img src="2.png" class="carousel-img" alt="carousel2">
+            <img src="3.png" class="carousel-img" alt="carousel3">
+            <div class="ctrl-btn" id="ctrl1">1</div>
+            <div class="ctrl-btn" id="ctrl2">2</div>
+            <div class="ctrl-btn" id="ctrl3">3</div>
         </div>
     </div>
-
-    <!-- 轮播窗口 -->
-    <div id="carousel">
-        <img src="1.png" class="carousel-img active" alt="carousel1">
-        <img src="2.png" class="carousel-img" alt="carousel2">
-        <img src="3.png" class="carousel-img" alt="carousel3">
-        <div class="ctrl-btn" id="ctrl1">1</div>
-        <div class="ctrl-btn" id="ctrl2">2</div>
-        <div class="ctrl-btn" id="ctrl3">3</div>
-    </div>
-
-    <!-- 左侧信息窗 -->
-    <div id="left-info">
-        <a href="https://www.17173.com/" class="highlight">纪念512活动公告</a>
-        <a href="https://www.gamersky.com/" class="highlight">《天龙》5月15日新开服务器公告</a>
-        <a href="https://www.duowan.com/">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
-        <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
-    </div>
-    <!-- 右侧信息窗 -->
-    <div id="right-info">
-        <a href="https://www.baidu.com/" class="highlight link-row">搜狐畅游产品评测专员热招！欢迎加盟</a>
-        <div class="link-row link-container">
-            <div class="link-float">
-                <a href="https://www.tencent.com/"class="link-item">最新手动补丁下载</a>
-            </div>
-            <div class="link-float">
-                <a href="https://www.sina.com.cn/"class="link-item">手机靓图免费下载</a>
-            </div>
-            <div style="clear:both;"></div>
+    <!-- 信息栏 -->
+    <div class="info-bar">
+        <div id="left-info">
+            <a href="https://www.17173.com/" class="highlight">纪念512活动公告</a>
+            <a href="https://www.gamersky.com/" class="highlight">《天龙》5月15日新开服务器公告</a>
+            <a href="https://www.duowan.com/">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
+            <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
         </div>
-        <div class="info-row">更新版本: tlbb-0.85.0600-0.85.0858</div>
-        <div class="info-row">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</div>
+        <div id="right-info">
+            <a href="https://www.baidu.com/" class="highlight link-row">搜狐畅游产品评测专员热招！欢迎加盟</a>
+            <div class="link-row link-container">
+                <div class="link-float">
+                    <a href="https://www.tencent.com/"class="link-item">最新手动补丁下载</a>
+                </div>
+                <div class="link-float">
+                    <a href="https://www.sina.com.cn/"class="link-item">手机靓图免费下载</a>
+                </div>
+            </div>
+            <div class="info-row">更新版本: tlbb-0.85.0600-0.85.0858</div>
+            <div class="info-row">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</div>
+        </div>
     </div>
 </div>
-
-<script type="text/javascript">
+<script>
 // ================ IE7兼容性补丁 ================
 if (!document.getElementsByClassName) {
     document.getElementsByClassName = function(className) {
@@ -344,7 +371,8 @@ function switchSlide(index) {
 function startCarousel() {
     if(carouselTimer) clearInterval(carouselTimer);
     carouselTimer = setInterval(function(){
-        currentIndex = (currentIndex+1)%3;
+        var imgs = document.getElementsByClassName('carousel-img');
+        currentIndex = (currentIndex+1)%imgs.length;
         switchSlide(currentIndex);
     }, 4000);
 }
