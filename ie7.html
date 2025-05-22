@@ -1,102 +1,460 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="GB2312">
-<title>天龙游戏IE7兼容版（IE布局）</title>
-<style type="text/css">
-html, body { height: 100%; margin: 0; padding: 0; }
-body { background: #F7E08D; }
-#container {
-    width: 502px; height: 351px;
-    border: 1px solid #ccc;
-    margin: 0 auto;
-    background: #F7E08D;
-    position: relative;
-}
-.table-main { width:100%; height:280px; border-collapse:collapse; }
-.td-left { width:90px; vertical-align:top; }
-.td-right { width:412px; vertical-align:top; }
-.nav-bar { width:90px; }
-.nav-btn {
-    width:90px; height:40px; line-height:40px;
-    background:#DE6E22; border:0; color:#fff;
-    text-align:center; cursor:pointer;
-    font-size:16px; font-family:"Microsoft YaHei", SimSun, Arial;
-    border-bottom:1px solid #B3591B;
-    display:block; text-decoration:none;
-}
-.nav-btn:last-child { border-bottom:0; }
-#scroll-window {
-    width:100%; height:100%;
-    background: #FEFBC5;
-    border-left:1px solid #8F7929;
-    overflow:auto;
-    font-size:14px;
-    padding:8px;
-    box-sizing: border-box;
-}
-.link-pair { margin:4px 0; overflow:hidden; zoom:1; }
-.link-item { float:left; width:48%; color:#06c; text-decoration:underline !important; white-space:nowrap; }
-.link-item + .link-item { margin-left:4%; }
-.info-bar { width:100%; height:70px; background:#F7E08D; border-top:1px solid #ccc; }
-#left-info, #right-info { float:left; width:49%; font-size:12px; padding:4px; box-sizing:border-box;}
-#right-info { width:50%; }
-.clearfix:after { content:""; display:block; clear:both; }
-</style>
+    <meta charset="GB2312">
+    <title>天龙游戏IE7兼容版</title>
+    <style type="text/css">
+    html, body {
+        overflow: hidden !important;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    body,div,img {
+        margin:0;
+        padding:0;
+        border:0;
+    }
+    #container {
+        position: relative;
+        width:502px;
+        height:351px;
+        border:1px solid #ccc;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+        background:#F7E08D;
+        overflow: visible !important;
+    }
+    .btn {
+        position: absolute;
+        width:76px;
+        height:26px;
+        top:13px;
+        background:#DE6E22;
+        border:1px solid #B3591B;
+        text-align:center;
+        line-height:26px;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+        cursor: pointer;
+    }
+    .btn a {
+        display:block;
+        width:76px;
+        height:26px;
+        color:#fff !important;
+        text-decoration:none;
+    }
+    .btn a:hover {
+        background:#B3591B;
+    }
+    #btn1 { left:5px; }     /* 原来是3px，右移2px */
+    #btn2 { left:88px; }    /* 原来是86px，右移2px */
+    #btn3 { left:171px; }   /* 原来是169px，右移2px */
+    #btn4 { left:254px; }   /* 原来是252px，右移2px */
+    #btn5 { left:337px; }   /* 原来是335px，右移2px */
+    #btn6 { left:420px; }   /* 原来是418px，右移2px */
+    #scroll-window {
+        position:absolute;
+        width:283px;
+        height:224px;
+        left:6px;           /* 原来是4px，右移2px */
+        top:51px;
+        border:1px solid #8F7929;
+        overflow:auto;
+        background:#FEFBC5;
+        font-size:14px;
+        scrollbar-base-color: #FFF3C1;
+        scrollbar-face-color: #FFF3C1;
+        scrollbar-arrow-color: #B3591B;
+        scrollbar-track-color: #F7E08D;
+        scrollbar-shadow-color: #B3591B;
+        scrollbar-highlight-color: #FFF3C1;
+        scrollbar-3dlight-color: #F7E08D;
+        scrollbar-darkshadow-color: #502D0C;
+    }
+    .link-pair {
+        margin:4px 0;
+        overflow:hidden;
+        zoom:1;
+    }
+    .link-item {
+        float:left;
+        width:48%;
+        color:#06c;
+        text-decoration:underline !important;
+        white-space:nowrap;
+    }
+    .link-item + .link-item {
+        margin-left:4%;
+    }
+    #carousel {
+        position:absolute;
+        width:203px;
+        height:227px;
+        left:291px;         /* 原来是289px，右移2px */
+        top:51px;
+        border:1px solid #666;
+        overflow:hidden;
+        z-index:1;
+    }
+    .carousel-img {
+        position:absolute;
+        width:203px;
+        height:227px;
+        display:none;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    }
+    .carousel-img.active {
+        display:block;
+        z-index:1;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+    }
+    .ctrl-btn {
+        position:absolute;
+        width:19px;
+        height:14px;
+        bottom:1px;
+        border:1px solid #FF6600 !important;
+        background:#FF9900;
+        color:#fff !important;
+        font:bold 12px/14px Arial;
+        text-align:center;
+        cursor:pointer;
+        z-index:999;
+        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=30);
+        _filter:alpha(opacity=30);
+        line-height:14px;
+    }
+    .ctrl-btn.active {
+        background:#FF6600 !important;
+        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100) !important;
+        _filter:alpha(opacity=100) !important;
+        border-color:#B3591B !important;
+    }
+    #ctrl1 { left:141px; }  /* 原来是139px，右移2px */
+    #ctrl2 { left:161px; }  /* 原来是159px，右移2px */
+    #ctrl3 { left:181px; }  /* 原来是179px，右移2px */
+    .ctrl-btn:hover {
+        filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+        _filter:alpha(opacity=100);
+    }
+    * html .ctrl-btn { 
+        zoom:1;
+    }
+    #left-info, #right-info {
+        position:absolute;
+        height:auto !important;
+        overflow:visible !important;
+        font-size:10px;
+        *height:60px;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+        line-height: 9px;
+    }
+    #left-info {
+        width:283px;
+        left:6px;           /* 原来是4px，右移2px */
+        top:282px;
+    }
+    #right-info {
+        width:203px;
+        left:291px;         /* 原来是289px，右移2px */
+        top:282px;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    #left-info a, #right-info a,
+    #right-info .info-row, #right-info .link-row, #right-info .link-float a {
+        line-height: 9px !important;
+    }
+    #left-info a, #right-info a {
+        display:block;
+        color:#444 !important;
+        text-decoration:none;
+        padding:2px 3px !important;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    #left-info a.highlight, #right-info a.highlight {
+        color:#9E511C !important;
+    }
+    #left-info a:hover, #right-info a:hover {
+        color:#f60 !important;
+        text-decoration:underline !important;
+    }
+    #right-info .link-row {
+        display: block;
+        width: 100%;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+        margin: 0 0 2px 0;
+    }
+    #right-info .link-container {
+        width:203px;
+        overflow:hidden;
+        display: block;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    #right-info .link-float {
+        float:left;
+        width:49%;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    #right-info .link-float a {
+        display:inline-block;
+        width:auto;
+        color:#06c !important;
+        text-decoration:underline !important;
+        white-space:nowrap;
+        padding:2px 0;
+        letter-spacing:-0.5px;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+    }
+    #right-info .info-row {
+        display: block;
+        font-family: "Microsoft YaHei", SimSun, Arial;
+        color: #444;
+        padding:2px 3px;
+        margin:0;
+    }
+    </style>
+    <!--[if lte IE 8]>
+    <style type="text/css">
+        body, #container, #left-info, #right-info { font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif; }
+        .ctrl-btn { font-size: 11px; }
+        #right-info .link-float { width:49%; }
+        #right-info .link-float a { width:auto; }
+    </style>
+    <![endif]-->
 </head>
+
 <body>
 <div id="container">
-    <table class="table-main">
-        <tr>
-            <td class="td-left" valign="top">
-                <div class="nav-bar">
-                    <a class="nav-btn" href="https://www.17173.com/">官网</a>
-                    <a class="nav-btn" href="https://www.gamersky.com/">新手</a>
-                    <a class="nav-btn" href="https://www.duowan.com/">下载</a>
-                    <a class="nav-btn" href="https://news.qq.com/ch/games">论坛</a>
-                    <a class="nav-btn" href="https://games.sina.com.cn/">商城</a>
-                    <a class="nav-btn" href="https://game.163.com/">安全</a>
-                </div>
-            </td>
-            <td class="td-right" valign="top">
-                <div id="scroll-window">
-                    <div class="link-pair">
-                        <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
-                        <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
-                    </div>
-                    <div class="link-pair">
-                        <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
-                        <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
-                    </div>
-                    <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
-                    <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
-                    <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
-                    <p style="color:#666;margin:8px 0 0 0">
-                        暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
-                        已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
-                        服务将和无密保用户一致。
-                    </p>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class="info-bar clearfix">
-        <div id="left-info">
-            <a href="https://www.17173.com/" style="color:#9E511C">纪念512活动公告</a>
-            <a href="https://www.gamersky.com/" style="color:#9E511C">《天龙》5月15日新开服务器公告</a>
-            <a href="https://www.duowan.com/">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
-            <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
-        </div>
-        <div id="right-info">
-            <a href="https://www.baidu.com/" style="color:#9E511C">搜狐畅游产品评测专员热招！欢迎加盟</a>
-            <div>
-                <a href="https://www.tencent.com/" style="color:#06c">最新手动补丁下载</a>
-                <a href="https://www.sina.com.cn/" style="color:#06c">手机靓图免费下载</a>
+    <!-- 导航按钮 -->
+    <div class="btn" id="btn1"><a href="https://www.17173.com/">官网</a></div>
+    <div class="btn" id="btn2"><a href="https://www.gamersky.com/">新手</a></div>
+    <div class="btn" id="btn3"><a href="https://www.duowan.com/">下载</a></div>
+    <div class="btn" id="btn4"><a href="https://news.qq.com/ch/games">论坛</a></div>
+    <div class="btn" id="btn5"><a href="https://games.sina.com.cn/">商城</a></div>
+    <div class="btn" id="btn6"><a href="https://game.163.com/">安全</a></div>
+
+    <!-- 滚动窗口 -->
+    <div id="scroll-window">
+        <div style="padding:8px">
+            <div class="link-pair">
+                <a href="https://www.baidu.com/" class="link-item">免费在线杀毒</a>
+                <a href="https://www.tencent.com/" class="link-item">360安全中心</a>
             </div>
-            <div>更新版本: tlbb-0.85.0600-0.85.0858</div>
-            <div>大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</div>
+            <div class="link-pair">
+                <a href="https://www.alibabagroup.com/" class="link-item">天龙客服满意度调查</a>
+                <a href="https://www.sohu.com/" class="link-item">账号安全站</a>
+            </div>
+            <p style="color:#c00;margin:8px 0 4px 0">5月15日开放一组新服：</p>
+            <p style="color:#c00;margin:0 0 8px 0">网通二区【双子座】</p>
+            <p style="margin:8px 0">5月14日全服更新至0.85.0858</p>
+            <p style="color:#666;margin:8px 0 0 0">
+                暂停电话密保功能首绑、增绑两项服务，解除电话密保绑定功能可以继续使用。<br>
+                已绑定电话密保的账号，仍可继续使用该项服务，但是相关的帐号安全后续处理等<br>
+                服务将和无密保用户一致。
+            </p>
         </div>
     </div>
+
+    <!-- 轮播窗口 -->
+    <div id="carousel">
+        <img src="1.png" class="carousel-img active" alt="carousel1">
+        <img src="2.png" class="carousel-img" alt="carousel2">
+        <img src="3.png" class="carousel-img" alt="carousel3">
+        <div class="ctrl-btn" id="ctrl1">1</div>
+        <div class="ctrl-btn" id="ctrl2">2</div>
+        <div class="ctrl-btn" id="ctrl3">3</div>
+    </div>
+
+    <!-- 左侧信息窗 -->
+    <div id="left-info">
+        <a href="https://www.17173.com/" class="highlight">纪念512活动公告</a>
+        <a href="https://www.gamersky.com/" class="highlight">《天龙》5月15日新开服务器公告</a>
+        <a href="https://www.duowan.com/">官博:太好听了！天龙背景音乐翻唱合辑<span>(05/18)</span></a>
+        <a href="https://news.qq.com/ch/games">玩的就是心跳！《天龙》七大保命绝招<span>(05/18)</span></a>
+    </div>
+    <!-- 右侧信息窗 -->
+    <div id="right-info">
+        <a href="https://www.baidu.com/" class="highlight link-row">搜狐畅游产品评测专员热招！欢迎加盟</a>
+        <div class="link-row link-container">
+            <div class="link-float">
+                <a href="https://www.tencent.com/"class="link-item">最新手动补丁下载</a>
+            </div>
+            <div class="link-float">
+                <a href="https://www.sina.com.cn/"class="link-item">手机靓图免费下载</a>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="info-row">更新版本: tlbb-0.85.0600-0.85.0858</div>
+        <div class="info-row">大小：11.8MB&nbsp;&nbsp;更新日期：09-5-14</div>
+    </div>
 </div>
+
+<script type="text/javascript">
+// ================ IE7兼容性补丁 ================
+if (!document.getElementsByClassName) {
+    document.getElementsByClassName = function(className) {
+        var all = document.all ? document.all : document.getElementsByTagName('*');
+        var elements = [];
+        for (var i=0; i<all.length; i++) {
+            if (all[i].className) {
+                var cn = all[i].className.split(' ');
+                for (var j=0; j<cn.length; j++) {
+                    if (cn[j] === className) {
+                        elements.push(all[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        return elements;
+    };
+}
+
+function getElementsByClassName(node, className) {
+    var elements = node.getElementsByTagName("*");
+    var result = [];
+    for (var i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + className + ' ') > -1) {
+            result.push(elements[i]);
+        }
+    }
+    return result;
+}
+
+// ================ 轮播控制脚本 ================
+var currentIndex = 0;
+var carouselTimer = null;
+
+function switchSlide(index) {
+    var imgs = document.getElementsByClassName('carousel-img');
+    var btns = document.getElementsByClassName('ctrl-btn');
+    for(var i=0; i<imgs.length; i++){
+        imgs[i].style.display = 'none';
+        imgs[i].className = imgs[i].className.replace(/\s?active/g, '');
+        btns[i].className = btns[i].className.replace(/\s?active/g, '');
+    }
+    imgs[index].style.display = 'block';
+    imgs[index].className += ' active';
+    btns[index].className += ' active';
+    currentIndex = index;
+}
+
+function startCarousel() {
+    if(carouselTimer) clearInterval(carouselTimer);
+    carouselTimer = setInterval(function(){
+        currentIndex = (currentIndex+1)%3;
+        switchSlide(currentIndex);
+    }, 4000);
+}
+
+// ================ 自适应容器缩放 ================
+function resizeContainer(){
+    var baseWidth = 502;
+    var baseHeight = 351;
+    var winWidth = document.documentElement.clientWidth || document.body.clientWidth;
+    var winHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    var scaleX = winWidth / baseWidth;
+    var scaleY = winHeight / baseHeight;
+    var scale = Math.min(scaleX, scaleY);
+
+    var container = document.getElementById('container');
+    if('zoom' in container.style) {
+        container.style.zoom = scale;
+    } else {
+        container.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11=" + scale + ", M12=0, M21=0, M22=" + scale + ", SizingMethod='auto expand')";
+    }
+    container.style.left = ((winWidth - baseWidth * scale) / 2) + 'px';
+    container.style.top = ((winHeight - baseHeight * scale) / 2) + 'px';
+    container.style.position = 'absolute';
+}
+
+// ================ 禁用右键与所有常见快捷键 ================
+document.oncontextmenu = function() {
+    return false;
+};
+
+document.onkeydown = function(e) {
+    e = e || window.event;
+    var keyCode = e.keyCode || e.which;
+    var isCtrl = e.ctrlKey;
+    var isShift = e.shiftKey;
+    var isAlt = e.altKey;
+
+    // 禁用F1~F12
+    if (keyCode >= 112 && keyCode <= 123) return false;
+
+    // 常见开发者、保存、打印、查找、关闭、刷新等快捷键
+    if (
+        // 开发者工具
+        (isCtrl && isShift && (keyCode === 73 || keyCode === 67 || keyCode === 74 || keyCode === 75)) || // Ctrl+Shift+I/C/J/K
+        (isCtrl && isShift && keyCode === 68) || // Ctrl+Shift+D
+        (isCtrl && keyCode === 85) ||       // Ctrl+U
+        (isCtrl && keyCode === 83) ||       // Ctrl+S
+        (isCtrl && keyCode === 80) ||       // Ctrl+P
+        (isCtrl && keyCode === 79) ||       // Ctrl+O
+        (isCtrl && keyCode === 70) ||       // Ctrl+F
+        (isCtrl && isShift && keyCode === 70) || // Ctrl+Shift+F
+        (isCtrl && keyCode === 78) ||       // Ctrl+N
+        (isCtrl && keyCode === 82) ||       // Ctrl+R
+        (isCtrl && isShift && keyCode === 82) || // Ctrl+Shift+R
+        (isCtrl && keyCode === 87) ||       // Ctrl+W
+        (isCtrl && keyCode === 9) ||        // Ctrl+Tab
+        (isCtrl && isShift && keyCode === 84) || // Ctrl+Shift+T
+        (isCtrl && isShift && keyCode === 78) || // Ctrl+Shift+N
+        (isCtrl && isShift && keyCode === 68) || // Ctrl+Shift+D
+        (isCtrl && keyCode === 69) ||       // Ctrl+E
+        (isCtrl && keyCode === 72) ||       // Ctrl+H
+        (isCtrl && isShift && keyCode === 72) || // Ctrl+Shift+H
+        (isCtrl && keyCode === 65) ||       // Ctrl+A
+        (isCtrl && keyCode === 67) ||       // Ctrl+C
+        (isCtrl && keyCode === 88) ||       // Ctrl+X
+        (isCtrl && keyCode === 86) ||       // Ctrl+V
+        (isCtrl && keyCode === 45) ||       // Ctrl+Insert
+        (isShift && keyCode === 45) ||      // Shift+Insert
+        (isCtrl && isShift && keyCode === 46) || // Ctrl+Shift+Del
+        (isCtrl && keyCode === 116) ||      // Ctrl+F5
+        (isCtrl && keyCode === 123)         // Ctrl+F12
+    ) {
+        return false;
+    }
+
+    // Alt+F4 关闭窗口
+    if (isAlt && keyCode === 115) return false;
+
+    // 禁止F5刷新
+    if (keyCode === 116) return false;
+
+    // 禁止Ctrl+Shift+O
+    if (isCtrl && isShift && keyCode === 79) return false;
+
+    // 禁止Ctrl+Shift+P
+    if (isCtrl && isShift && keyCode === 80) return false;
+
+    // 禁止Ctrl+Shift+S
+    if (isCtrl && isShift && keyCode === 83) return false;
+};
+
+window.onresize = resizeContainer;
+window.onload = function(){
+    // 轮播初始化
+    var btns = document.getElementsByClassName('ctrl-btn');
+    switchSlide(0);
+    for(var i=0; i<btns.length; i++){
+        btns[i].setAttribute('index', i);
+        btns[i].onmouseover = function(){
+            clearInterval(carouselTimer);
+            var index = parseInt(this.getAttribute('index'),10);
+            switchSlide(index);
+        };
+        btns[i].onmouseout = function(){
+            startCarousel();
+        };
+    }
+    startCarousel();
+    // 容器自适应
+    resizeContainer();
+};
+</script>
 </body>
 </html>
