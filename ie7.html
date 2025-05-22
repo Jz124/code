@@ -20,7 +20,7 @@
         position: relative;
         width:502px;
         height:351px;
-        border:1px solid #ccc;
+        border:0px solid #ccc;
         font-family: "Microsoft YaHei", SimSun, Arial;
         background:#F7E08D;
         overflow: visible !important;
@@ -348,26 +348,22 @@ function startCarousel() {
     }, 4000);
 }
 
-// ================ 自适应容器缩放 ================
-function resizeContainer(){
-    var baseWidth = 502;
-    var baseHeight = 351;
-    var winWidth = document.documentElement.clientWidth || document.body.clientWidth;
-    var winHeight = document.documentElement.clientHeight || document.body.clientHeight;
-    var scaleX = winWidth / baseWidth;
-    var scaleY = winHeight / baseHeight;
-    var scale = Math.min(scaleX, scaleY);
-
-    var container = document.getElementById('container');
-    if('zoom' in container.style) {
-        container.style.zoom = scale;
-    } else {
-        container.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11=" + scale + ", M12=0, M21=0, M22=" + scale + ", SizingMethod='auto expand')";
+window.onload = function(){
+    var btns = document.getElementsByClassName('ctrl-btn');
+    switchSlide(0);
+    for(var i=0; i<btns.length; i++){
+        btns[i].setAttribute('index', i);
+        btns[i].onmouseover = function(){
+            clearInterval(carouselTimer);
+            var index = parseInt(this.getAttribute('index'),10);
+            switchSlide(index);
+        };
+        btns[i].onmouseout = function(){
+            startCarousel();
+        };
     }
-    container.style.left = ((winWidth - baseWidth * scale) / 2) + 'px';
-    container.style.top = ((winHeight - baseHeight * scale) / 2) + 'px';
-    container.style.position = 'absolute';
-}
+    startCarousel();
+};
 
 // ================ 禁用右键与所有常见快捷键 ================
 document.oncontextmenu = function() {
@@ -433,27 +429,6 @@ document.onkeydown = function(e) {
 
     // 禁止Ctrl+Shift+S
     if (isCtrl && isShift && keyCode === 83) return false;
-};
-
-window.onresize = resizeContainer;
-window.onload = function(){
-    // 轮播初始化
-    var btns = document.getElementsByClassName('ctrl-btn');
-    switchSlide(0);
-    for(var i=0; i<btns.length; i++){
-        btns[i].setAttribute('index', i);
-        btns[i].onmouseover = function(){
-            clearInterval(carouselTimer);
-            var index = parseInt(this.getAttribute('index'),10);
-            switchSlide(index);
-        };
-        btns[i].onmouseout = function(){
-            startCarousel();
-        };
-    }
-    startCarousel();
-    // 容器自适应
-    resizeContainer();
 };
 </script>
 </body>
