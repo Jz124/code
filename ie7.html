@@ -10,6 +10,10 @@
         height: 100%;
         margin: 0;
         padding: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
     }
     body,div,img {
         margin:0;
@@ -18,19 +22,18 @@
     }
     #container {
         position: relative;
-        width:498px;        /* 502 - 4 */
-        height:347px;       /* 351 - 4 */
+        width:502px;
+        height:351px;
+        /* border:1px solid #ccc; */   /* 移除边框 */
         font-family: "Microsoft YaHei", SimSun, Arial;
         background:#F7E08D;
         overflow: visible !important;
-        /* 去掉边框 */
-        border: none !important;
     }
     .btn {
         position: absolute;
         width:76px;
         height:26px;
-        top:11px; /* 原来13px, 上移2px */
+        top:13px;
         background:#DE6E22;
         border:1px solid #B3591B;
         text-align:center;
@@ -48,18 +51,18 @@
     .btn a:hover {
         background:#B3591B;
     }
-    #btn1 { left:3px; }   /* 右移2px->0px,再减2=1px, 但为整齐，设为3px */
-    #btn2 { left:86px; }
-    #btn3 { left:169px; }
-    #btn4 { left:252px; }
-    #btn5 { left:335px; }
-    #btn6 { left:418px; }
+    #btn1 { left:5px; }
+    #btn2 { left:88px; }
+    #btn3 { left:171px; }
+    #btn4 { left:254px; }
+    #btn5 { left:337px; }
+    #btn6 { left:420px; }
     #scroll-window {
         position:absolute;
-        width:279px;       /* 283 - 4 */
-        height:220px;      /* 224 - 4 */
-        left:4px;          /* 6px-2px */
-        top:49px;          /* 51px-2px */
+        width:283px;
+        height:224px;
+        left:6px;
+        top:51px;
         border:1px solid #8F7929;
         overflow:auto;
         background:#FEFBC5;
@@ -90,18 +93,18 @@
     }
     #carousel {
         position:absolute;
-        width:199px;       /* 203 - 4 */
-        height:223px;      /* 227 - 4 */
-        left:287px;        /* 291-4 */
-        top:49px;          /* 51-2 */
+        width:203px;
+        height:227px;
+        left:291px;
+        top:51px;
         border:1px solid #666;
         overflow:hidden;
         z-index:1;
     }
     .carousel-img {
         position:absolute;
-        width:199px;       /* 203-4 */
-        height:223px;      /* 227-4 */
+        width:203px;
+        height:227px;
         display:none;
         filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
     }
@@ -132,34 +135,34 @@
         _filter:alpha(opacity=100) !important;
         border-color:#B3591B !important;
     }
-    #ctrl1 { left:137px; } /* 141-4 */
-    #ctrl2 { left:157px; } /* 161-4 */
-    #ctrl3 { left:177px; } /* 181-4 */
+    #ctrl1 { left:141px; }
+    #ctrl2 { left:161px; }
+    #ctrl3 { left:181px; }
     .ctrl-btn:hover {
         filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
         _filter:alpha(opacity=100);
     }
-    * html .ctrl-btn { 
+    * html .ctrl-btn {
         zoom:1;
     }
     #left-info, #right-info {
         position:absolute;
         height:auto !important;
         overflow:visible !important;
-        font-size:11px;
+        font-size:10px;
         *height:60px;
         font-family: "Microsoft YaHei", SimSun, Arial;
         line-height: 9px;
     }
     #left-info {
-        width:279px;        /* 283-4 */
-        left:4px;           /* 6-2 */
-        top:278px;          /* 282-4 */
+        width:283px;
+        left:6px;
+        top:282px;
     }
     #right-info {
-        width:199px;        /* 203-4 */
-        left:287px;         /* 291-4 */
-        top:278px;          /* 282-4 */
+        width:203px;
+        left:291px;
+        top:282px;
         font-family: "Microsoft YaHei", SimSun, Arial;
     }
     #left-info a, #right-info a,
@@ -187,7 +190,7 @@
         margin: 0 0 2px 0;
     }
     #right-info .link-container {
-        width:199px;       /* 203-4 */
+        width:203px;
         overflow:hidden;
         display: block;
         font-family: "Microsoft YaHei", SimSun, Arial;
@@ -349,26 +352,22 @@ function startCarousel() {
     }, 4000);
 }
 
-// ================ 自适应容器缩放 ================
-function resizeContainer(){
-    var baseWidth = 498;   // 修改为新宽度
-    var baseHeight = 347;  // 修改为新高度
-    var winWidth = document.documentElement.clientWidth || document.body.clientWidth;
-    var winHeight = document.documentElement.clientHeight || document.body.clientHeight;
-    var scaleX = winWidth / baseWidth;
-    var scaleY = winHeight / baseHeight;
-    var scale = Math.min(scaleX, scaleY);
-
-    var container = document.getElementById('container');
-    if('zoom' in container.style) {
-        container.style.zoom = scale;
-    } else {
-        container.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11=" + scale + ", M12=0, M21=0, M22=" + scale + ", SizingMethod='auto expand')";
+window.onload = function(){
+    var btns = document.getElementsByClassName('ctrl-btn');
+    switchSlide(0);
+    for(var i=0; i<btns.length; i++){
+        btns[i].setAttribute('index', i);
+        btns[i].onmouseover = function(){
+            clearInterval(carouselTimer);
+            var index = parseInt(this.getAttribute('index'),10);
+            switchSlide(index);
+        };
+        btns[i].onmouseout = function(){
+            startCarousel();
+        };
     }
-    container.style.left = ((winWidth - baseWidth * scale) / 2) + 'px';
-    container.style.top = ((winHeight - baseHeight * scale) / 2) + 'px';
-    container.style.position = 'absolute';
-}
+    startCarousel();
+};
 
 // ================ 禁用右键与所有常见快捷键 ================
 document.oncontextmenu = function() {
@@ -434,27 +433,6 @@ document.onkeydown = function(e) {
 
     // 禁止Ctrl+Shift+S
     if (isCtrl && isShift && keyCode === 83) return false;
-};
-
-window.onresize = resizeContainer;
-window.onload = function(){
-    // 轮播初始化
-    var btns = document.getElementsByClassName('ctrl-btn');
-    switchSlide(0);
-    for(var i=0; i<btns.length; i++){
-        btns[i].setAttribute('index', i);
-        btns[i].onmouseover = function(){
-            clearInterval(carouselTimer);
-            var index = parseInt(this.getAttribute('index'),10);
-            switchSlide(index);
-        };
-        btns[i].onmouseout = function(){
-            startCarousel();
-        };
-    }
-    startCarousel();
-    // 容器自适应
-    resizeContainer();
 };
 </script>
 </body>
